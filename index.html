@@ -1,269 +1,289 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>BECREX | Deep Expertise & Strategic Insight</title>
 
-<title>BECREX | Deep Expertise & Strategic Insight</title>
+  <meta name="description" content="High-impact advisory for investors, owners and management teams navigating complexity with clarity, precision and strategic insight.">
 
-<meta name="description" content="High-impact advisory for investors, owners and management teams navigating complexity with clarity, precision and strategic insight.">
+  <meta property="og:title" content="BECREX | Deep Expertise & Strategic Insight">
+  <meta property="og:description" content="High-impact advisory for investors, owners and management teams navigating complexity with clarity and precision.">
+  <meta property="og:type" content="website">
+  <meta property="og:image" content="og-image.jpg">
 
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="icon" href="favicon.ico">
 
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-<link rel="stylesheet" href="styles.css">
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 
-<style>
-body {
-  background: #ffffff;
-}
-
-.logo {
-  font-size: 34px;
-  font-weight: 600;
-  letter-spacing: 0.08em;
-}
-
-.presence-map {
-  position: relative;
-  width: 100%;
-  height: 320px;
-  background: #ffffff;
-  border: 1px solid #ddd;
-  border-radius: 18px;
-  overflow: hidden;
-}
-
-.presence-map::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  background:
-    radial-gradient(circle at 29% 54%, #111 0 5px, transparent 6px),
-    radial-gradient(circle at 52% 42%, #111 0 5px, transparent 6px);
-}
-
-.map-point {
-  position: absolute;
-  width: 14px;
-  height: 14px;
-  background: #111;
-  border-radius: 50%;
-  cursor: pointer;
-}
-
-.map-point span {
-  position: absolute;
-  bottom: 22px;
-  left: 50%;
-  transform: translateX(-50%);
-  background: #111;
-  color: #fff;
-  font-size: 12px;
-  padding: 6px 9px;
-  border-radius: 6px;
-  opacity: 0;
-  pointer-events: none;
-  white-space: nowrap;
-  transition: opacity 0.2s ease;
-}
-
-.map-point:hover span {
-  opacity: 1;
-}
-
-.map-point.mexico {
-  left: 29%;
-  top: 54%;
-}
-
-.map-point.spain {
-  left: 52%;
-  top: 42%;
-}
-</style>
-
+  <link rel="stylesheet" href="styles.css">
 </head>
 
 <body>
 
 <header class="header">
+  <div class="logo">BECREX</div>
 
-<div class="logo">
-BECREX
-</div>
+  <nav class="nav">
+    <a href="#about" data-en="About Us" data-es="Quiénes Somos">About Us</a>
+    <a href="#value" data-en="Value" data-es="Valor">Value</a>
+    <a href="#people" data-en="People" data-es="Personas">People</a>
+    <a href="#presence" data-en="Presence" data-es="Presencia">Presence</a>
+    <a href="#contact" data-en="Contact" data-es="Contacto">Contact</a>
 
-<nav class="nav">
-
-<a href="#about" data-en="About Us" data-es="Quiénes Somos">About Us</a>
-<a href="#value" data-en="Value" data-es="Valor">Value</a>
-<a href="#people" data-en="People" data-es="Personas">People</a>
-<a href="#team" data-en="Team" data-es="Equipo">Team</a>
-<a href="#contact" data-en="Contact" data-es="Contacto">Contact</a>
-
-<button id="languageToggle">
-ES
-</button>
-
-</nav>
-
+    <button id="languageToggle">ES</button>
+  </nav>
 </header>
 
 <section id="home" class="hero">
+  <div class="hero-content">
 
-<div class="hero-content">
+    <p class="hero-eyebrow"
+       data-en="Deep Expertise"
+       data-es="Experiencia Profunda">
+      Deep Expertise
+    </p>
 
-<p class="hero-eyebrow"
-data-en="Deep Expertise"
-data-es="Experiencia Profunda">
-Deep Expertise
-</p>
+    <h1 class="hero-title">
+      <span
+        data-en="STRATEGIC INSIGHT."
+        data-es="VISIÓN ESTRATÉGICA.">
+        STRATEGIC INSIGHT.
+      </span>
+    </h1>
 
-<h1 class="hero-title">
+    <h2 class="hero-subtitle">
+      <span
+        data-en="Real Value."
+        data-es="Valor Real.">
+        Real Value.
+      </span>
+      <br>
+      <span
+        data-en="Clear Decisions."
+        data-es="Decisiones Claras.">
+        Clear Decisions.
+      </span>
+    </h2>
 
-<span
-data-en="STRATEGIC INSIGHT."
-data-es="VISIÓN ESTRATÉGICA.">
-STRATEGIC INSIGHT.
-</span>
+    <p class="hero-description"
+       data-en="Across industries, investors, owners, and management teams face growing complexity: shifting customer expectations, operational pressure, volatile capital markets, and changing competitive dynamics."
+       data-es="En distintos sectores, inversores, propietarios y equipos directivos enfrentan una complejidad creciente: cambios en las expectativas de los clientes, presión operativa, mercados de capital volátiles y dinámicas competitivas cambiantes.">
+      Across industries, investors, owners, and management teams face growing complexity: shifting customer expectations, operational pressure, volatile capital markets, and changing competitive dynamics.
+    </p>
 
-</h1>
+    <p class="hero-description"
+       data-en="We help clients navigate that complexity with clarity, discipline, and precision."
+       data-es="Ayudamos a nuestros clientes a navegar esa complejidad con claridad, disciplina y precisión.">
+      We help clients navigate that complexity with clarity, discipline, and precision.
+    </p>
 
-<h2 class="hero-subtitle">
+    <a href="#contact" class="cta"
+       data-en="Start a Conversation →"
+       data-es="Iniciar una Conversación →">
+      Start a Conversation →
+    </a>
 
-<span
-data-en="Real Value."
-data-es="Valor Real.">
-Real Value.
-</span>
-
-<br>
-
-<span
-data-en="Clear Decisions."
-data-es="Decisiones Claras.">
-Clear Decisions.
-</span>
-
-</h2>
-
-<p class="hero-description"
-data-en="Across industries, investors, owners, and management teams face growing complexity: shifting customer expectations, operational pressure, volatile capital markets, and changing competitive dynamics."
-data-es="En distintos sectores, inversores, propietarios y equipos directivos enfrentan una complejidad creciente: cambios en las expectativas de los clientes, presión operativa, mercados de capital volátiles y dinámicas competitivas cambiantes.">
-Across industries, investors, owners, and management teams face growing complexity: shifting customer expectations, operational pressure, volatile capital markets, and changing competitive dynamics.
-</p>
-
-<p class="hero-description"
-data-en="We help clients navigate that complexity with clarity, discipline, and precision."
-data-es="Ayudamos a nuestros clientes a navegar esa complejidad con claridad, disciplina y precisión.">
-We help clients navigate that complexity with clarity, discipline, and precision.
-</p>
-
-</div>
-
+  </div>
 </section>
 
 <section id="about" class="section">
+  <div class="container">
 
-<div class="container">
+    <div class="section-number">01</div>
 
-<div class="section-number">
-01
-</div>
+    <h2 class="section-title"
+        data-en="About Us"
+        data-es="Quiénes Somos">
+      About Us
+    </h2>
 
-<h2 class="section-title"
-data-en="About Us"
-data-es="Quiénes Somos">
-About Us
-</h2>
+    <div class="section-content">
+      <p
+        data-en="BECREX provides high-impact advisory for investors, owners, and management teams facing complex situations, consequential decisions, and moments where clarity matters."
+        data-es="BECREX ofrece asesoramiento de alto impacto a inversores, propietarios y equipos directivos que afrontan situaciones complejas, decisiones relevantes y momentos en los que la claridad es fundamental.">
+        BECREX provides high-impact advisory for investors, owners, and management teams facing complex situations, consequential decisions, and moments where clarity matters.
+      </p>
 
-<div class="section-content">
+      <p
+        data-en="We combine deep expertise, strategic judgment, and practical execution to help clients move from complexity to action."
+        data-es="Combinamos experiencia profunda, criterio estratégico y ejecución práctica para ayudar a nuestros clientes a transformar la complejidad en acción.">
+        We combine deep expertise, strategic judgment, and practical execution to help clients move from complexity to action.
+      </p>
+    </div>
 
-<p
-data-en="Our high-impact advisory empowers better strategic decisions, creating real value through performance improvement, capital structure optimization, and sensible, actionable roadmaps that strengthen long-term resilience and unlock the full potential of each asset."
-data-es="Nuestro asesoramiento de alto impacto impulsa mejores decisiones estratégicas, creando valor real mediante mejoras de desempeño, optimización de estructura de capital y planes de acción sensatos que fortalecen la resiliencia a largo plazo y desbloquean el potencial de cada activo.">
-Our high-impact advisory empowers better strategic decisions, creating real value through performance improvement, capital structure optimization, and sensible, actionable roadmaps that strengthen long-term resilience and unlock the full potential of each asset.
-</p>
-
-</div>
-
-</div>
-
+  </div>
 </section>
 
-<section id="presence" class="section">
+<section id="value" class="section section-light">
+  <div class="container">
 
-<div class="container">
+    <div class="section-number">02</div>
 
-<div class="section-number">
-02
-</div>
+    <h2 class="section-title"
+        data-en="Value"
+        data-es="Valor">
+      Value
+    </h2>
 
-<h2 class="section-title"
-data-en="Presence"
-data-es="Presencia">
-Presence
-</h2>
+    <div class="cards">
 
-<div class="presence-wrapper">
+      <div class="card">
+        <h3
+          data-en="Performance Improvement"
+          data-es="Mejora del Desempeño">
+          Performance Improvement
+        </h3>
+        <p
+          data-en="We identify practical levers to improve operating performance, strengthen resilience, and unlock value."
+          data-es="Identificamos palancas prácticas para mejorar el desempeño operativo, fortalecer la resiliencia y desbloquear valor.">
+          We identify practical levers to improve operating performance, strengthen resilience, and unlock value.
+        </p>
+      </div>
 
-<div class="presence-map">
+      <div class="card">
+        <h3
+          data-en="Capital Structure Optimization"
+          data-es="Optimización de Capital">
+          Capital Structure Optimization
+        </h3>
+        <p
+          data-en="We help evaluate capital alternatives with discipline, clarity, and long-term perspective."
+          data-es="Ayudamos a evaluar alternativas de capital con disciplina, claridad y perspectiva de largo plazo.">
+          We help evaluate capital alternatives with discipline, clarity, and long-term perspective.
+        </p>
+      </div>
 
-<div class="map-point mexico">
-<span>Mexico</span>
-</div>
+      <div class="card">
+        <h3
+          data-en="Strategic Roadmaps"
+          data-es="Planes Estratégicos">
+          Strategic Roadmaps
+        </h3>
+        <p
+          data-en="We translate complexity into sensible, actionable plans aligned with the full potential of each asset."
+          data-es="Transformamos la complejidad en planes sensatos y accionables, alineados con el potencial de cada activo.">
+          We translate complexity into sensible, actionable plans aligned with the full potential of each asset.
+        </p>
+      </div>
 
-<div class="map-point spain">
-<span>Spain</span>
-</div>
+    </div>
 
-</div>
+  </div>
+</section>
 
-<p
-data-en="Operating across Mexico and Spain, supporting investors, owners and management teams on both sides of the Atlantic."
-data-es="Operando entre México y España, apoyando a inversores, propietarios y equipos directivos a ambos lados del Atlántico.">
-Operating across Mexico and Spain, supporting investors, owners and management teams on both sides of the Atlantic.
-</p>
+<section id="people" class="section">
+  <div class="container">
 
-</div>
+    <div class="section-number">03</div>
 
-</div>
+    <h2 class="section-title"
+        data-en="People"
+        data-es="Personas">
+      People
+    </h2>
 
+    <div class="section-content">
+      <p
+        data-en="Every engagement is led with senior attention, discretion, and a direct understanding of what is at stake."
+        data-es="Cada proyecto se lidera con atención senior, discreción y una comprensión directa de lo que está en juego.">
+        Every engagement is led with senior attention, discretion, and a direct understanding of what is at stake.
+      </p>
+
+      <p
+        data-en="We stay close to the people, the asset, and the decision-making process from diagnosis to execution."
+        data-es="Nos mantenemos cerca de las personas, del activo y del proceso de decisión desde el diagnóstico hasta la ejecución.">
+        We stay close to the people, the asset, and the decision-making process from diagnosis to execution.
+      </p>
+    </div>
+
+  </div>
+</section>
+
+<section id="presence" class="section section-light">
+  <div class="container">
+
+    <div class="section-number">04</div>
+
+    <h2 class="section-title"
+        data-en="Presence"
+        data-es="Presencia">
+      Presence
+    </h2>
+
+    <div class="presence-wrapper">
+
+      <div class="presence-map">
+
+        <svg viewBox="0 0 900 420" class="map-svg" aria-label="BECREX presence map">
+          <path d="M130 230 C220 120, 360 130, 450 205 C540 280, 670 245, 760 160"
+                fill="none"
+                stroke="rgba(0,0,0,0.14)"
+                stroke-width="1.5"/>
+
+          <circle cx="250" cy="250" r="5" fill="#111"/>
+          <circle cx="565" cy="175" r="5" fill="#111"/>
+
+          <path d="M80 300 C160 250, 210 290, 270 260 C320 235, 355 250, 400 280"
+                fill="none"
+                stroke="rgba(0,0,0,0.08)"
+                stroke-width="1"/>
+
+          <path d="M500 180 C540 150, 590 145, 630 170 C670 195, 710 185, 750 150"
+                fill="none"
+                stroke="rgba(0,0,0,0.08)"
+                stroke-width="1"/>
+        </svg>
+
+        <div class="map-point mexico">
+          <span>Mexico</span>
+        </div>
+
+        <div class="map-point spain">
+          <span>Spain</span>
+        </div>
+
+      </div>
+
+      <p
+        data-en="Operating across Mexico and Spain, supporting investors, owners and management teams on both sides of the Atlantic."
+        data-es="Operando entre México y España, apoyando a inversores, propietarios y equipos directivos a ambos lados del Atlántico.">
+        Operating across Mexico and Spain, supporting investors, owners and management teams on both sides of the Atlantic.
+      </p>
+
+    </div>
+
+  </div>
 </section>
 
 <section id="contact" class="contact-section">
+  <div class="container">
 
-<div class="container">
+    <h2 class="contact-title"
+        data-en="Most important decisions don't come with perfect information."
+        data-es="Las decisiones más importantes rara vez vienen acompañadas de información perfecta.">
+      Most important decisions don't come with perfect information.
+    </h2>
 
-<h2 class="contact-title"
-data-en="Most important decisions don't come with perfect information."
-data-es="Las decisiones más importantes rara vez vienen acompañadas de información perfecta.">
-Most important decisions don't come with perfect information.
-</h2>
+    <p class="contact-subtitle"
+       data-en="That's usually where the conversation starts."
+       data-es="Normalmente ahí es donde comienza la conversación.">
+      That's usually where the conversation starts.
+    </p>
 
-<p class="contact-subtitle"
-data-en="That's usually where the conversation starts."
-data-es="Normalmente ahí es donde comienza la conversación.">
-That's usually where the conversation starts.
-</p>
+    <a href="mailto:domingo@becrex.com" class="contact-email">
+      domingo@becrex.com
+    </a>
 
-<a href="mailto:domingo@becrex.com" class="contact-email">
-domingo@becrex.com
-</a>
-
-</div>
-
+  </div>
 </section>
 
 <footer class="footer">
-
-<p>
-BECREX · Mexico & Spain
-</p>
-
+  <p>BECREX · Mexico & Spain</p>
 </footer>
 
 <script src="script.js"></script>
