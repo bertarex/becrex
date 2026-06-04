@@ -5,9 +5,9 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>BECREX | Complex Transactions & Special Situations</title>
+<title>BECREX | Deep Expertise & Strategic Insight</title>
 
-<meta name="description" content="Independent advice for investors, owners and management teams navigating complex transactions, special situations and consequential decisions.">
+<meta name="description" content="High-impact advisory for investors, owners and management teams navigating complexity with clarity, precision and strategic insight.">
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -15,6 +15,76 @@
 <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@300;400;500;600&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
 
 <link rel="stylesheet" href="styles.css">
+
+<style>
+body {
+  background: #ffffff;
+}
+
+.logo {
+  font-size: 34px;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+}
+
+.presence-map {
+  position: relative;
+  width: 100%;
+  height: 320px;
+  background: #ffffff;
+  border: 1px solid #ddd;
+  border-radius: 18px;
+  overflow: hidden;
+}
+
+.presence-map::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background:
+    radial-gradient(circle at 29% 54%, #111 0 5px, transparent 6px),
+    radial-gradient(circle at 52% 42%, #111 0 5px, transparent 6px);
+}
+
+.map-point {
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  background: #111;
+  border-radius: 50%;
+  cursor: pointer;
+}
+
+.map-point span {
+  position: absolute;
+  bottom: 22px;
+  left: 50%;
+  transform: translateX(-50%);
+  background: #111;
+  color: #fff;
+  font-size: 12px;
+  padding: 6px 9px;
+  border-radius: 6px;
+  opacity: 0;
+  pointer-events: none;
+  white-space: nowrap;
+  transition: opacity 0.2s ease;
+}
+
+.map-point:hover span {
+  opacity: 1;
+}
+
+.map-point.mexico {
+  left: 29%;
+  top: 54%;
+}
+
+.map-point.spain {
+  left: 52%;
+  top: 42%;
+}
+</style>
 
 </head>
 
@@ -28,14 +98,10 @@ BECREX
 
 <nav class="nav">
 
-<a href="#home" data-en="Home" data-es="Inicio">Home</a>
-
-<a href="#about" data-en="About" data-es="Quiénes Somos">About</a>
-
-<a href="#approach" data-en="Approach" data-es="Enfoque">Approach</a>
-
-<a href="#presence" data-en="Presence" data-es="Presencia">Presence</a>
-
+<a href="#about" data-en="About Us" data-es="Quiénes Somos">About Us</a>
+<a href="#value" data-en="Value" data-es="Valor">Value</a>
+<a href="#people" data-en="People" data-es="Personas">People</a>
+<a href="#team" data-en="Team" data-es="Equipo">Team</a>
 <a href="#contact" data-en="Contact" data-es="Contacto">Contact</a>
 
 <button id="languageToggle">
@@ -51,17 +117,17 @@ ES
 <div class="hero-content">
 
 <p class="hero-eyebrow"
-data-en="Independent Advisory"
-data-es="Asesoramiento Independiente">
-Independent Advisory
+data-en="Deep Expertise"
+data-es="Experiencia Profunda">
+Deep Expertise
 </p>
 
 <h1 class="hero-title">
 
 <span
-data-en="WHEN DECISIONS CARRY WEIGHT."
-data-es="CUANDO LAS DECISIONES IMPORTAN.">
-WHEN DECISIONS CARRY WEIGHT.
+data-en="STRATEGIC INSIGHT."
+data-es="VISIÓN ESTRATÉGICA.">
+STRATEGIC INSIGHT.
 </span>
 
 </h1>
@@ -69,29 +135,31 @@ WHEN DECISIONS CARRY WEIGHT.
 <h2 class="hero-subtitle">
 
 <span
-data-en="Complex Transactions."
-data-es="Transacciones Complejas.">
-Complex Transactions.
+data-en="Real Value."
+data-es="Valor Real.">
+Real Value.
 </span>
 
 <br>
 
 <span
-data-en="Special Situations."
-data-es="Situaciones Especiales.">
-Special Situations.
+data-en="Clear Decisions."
+data-es="Decisiones Claras.">
+Clear Decisions.
 </span>
 
 </h2>
 
 <p class="hero-description"
+data-en="Across industries, investors, owners, and management teams face growing complexity: shifting customer expectations, operational pressure, volatile capital markets, and changing competitive dynamics."
+data-es="En distintos sectores, inversores, propietarios y equipos directivos enfrentan una complejidad creciente: cambios en las expectativas de los clientes, presión operativa, mercados de capital volátiles y dinámicas competitivas cambiantes.">
+Across industries, investors, owners, and management teams face growing complexity: shifting customer expectations, operational pressure, volatile capital markets, and changing competitive dynamics.
+</p>
 
-data-en="Independent advice for investors, owners and management teams navigating situations where the stakes are high and the path forward is not always obvious."
-
-data-es="Asesoramiento independiente para inversores, propietarios y equipos directivos que afrontan situaciones donde las consecuencias son importantes y el camino a seguir no siempre es evidente.">
-
-Independent advice for investors, owners and management teams navigating situations where the stakes are high and the path forward is not always obvious.
-
+<p class="hero-description"
+data-en="We help clients navigate that complexity with clarity, discipline, and precision."
+data-es="Ayudamos a nuestros clientes a navegar esa complejidad con claridad, disciplina y precisión.">
+We help clients navigate that complexity with clarity, discipline, and precision.
 </p>
 
 </div>
@@ -107,109 +175,17 @@ Independent advice for investors, owners and management teams navigating situati
 </div>
 
 <h2 class="section-title"
-
-data-en="About"
+data-en="About Us"
 data-es="Quiénes Somos">
-
-About
-
+About Us
 </h2>
 
 <div class="section-content">
 
 <p
-
-data-en="We understand the weight of strategic decisions because we've made them."
-
-data-es="Entendemos el peso de las decisiones estratégicas porque las hemos tomado.">
-
-We understand the weight of strategic decisions because we've made them.
-
-</p>
-
-<p
-
-data-en="That experience shapes how we think, how we advise, and how we stay close to what matters."
-
-data-es="Esa experiencia define cómo pensamos, cómo asesoramos y cómo nos mantenemos cerca de lo que realmente importa.">
-
-That experience shapes how we think, how we advise, and how we stay close to what matters.
-
-</p>
-
-<p
-
-data-en="Every engagement is led directly — discreetly, directly, and with purpose."
-
-data-es="Cada proyecto es liderado directamente, con discreción, cercanía y propósito.">
-
-Every engagement is led directly — discreetly, directly, and with purpose.
-
-</p>
-
-</div>
-
-</div>
-
-</section>
-
-<section id="approach" class="section section-dark">
-
-<div class="container">
-
-<div class="section-number">
-02
-</div>
-
-<h2 class="section-title"
-
-data-en="Approach"
-data-es="Enfoque">
-
-Approach
-
-</h2>
-
-<div class="section-content">
-
-<p
-
-data-en="Every situation is different."
-
-data-es="Cada situación es diferente.">
-
-Every situation is different.
-
-</p>
-
-<p
-
-data-en="We start with the asset itself, the people involved, and the constraints of time, capital and risk appetite."
-
-data-es="Comenzamos por el activo, las personas implicadas y las limitaciones de tiempo, capital y apetito por el riesgo.">
-
-We start with the asset itself, the people involved, and the constraints of time, capital and risk appetite.
-
-</p>
-
-<p
-
-data-en="From there, we identify what matters, evaluate the real trade-offs, and help clients move from uncertainty to action."
-
-data-es="A partir de ahí identificamos lo que realmente importa, evaluamos las alternativas y ayudamos a transformar la incertidumbre en acción.">
-
-From there, we identify what matters, evaluate the real trade-offs, and help clients move from uncertainty to action.
-
-</p>
-
-<p
-
-data-en="We focus on clarity, judgment and practical next steps — not unnecessary complexity."
-
-data-es="Nos centramos en la claridad, el criterio y los siguientes pasos prácticos, no en una complejidad innecesaria.">
-
-We focus on clarity, judgment and practical next steps — not unnecessary complexity.
-
+data-en="Our high-impact advisory empowers better strategic decisions, creating real value through performance improvement, capital structure optimization, and sensible, actionable roadmaps that strengthen long-term resilience and unlock the full potential of each asset."
+data-es="Nuestro asesoramiento de alto impacto impulsa mejores decisiones estratégicas, creando valor real mediante mejoras de desempeño, optimización de estructura de capital y planes de acción sensatos que fortalecen la resiliencia a largo plazo y desbloquean el potencial de cada activo.">
+Our high-impact advisory empowers better strategic decisions, creating real value through performance improvement, capital structure optimization, and sensible, actionable roadmaps that strengthen long-term resilience and unlock the full potential of each asset.
 </p>
 
 </div>
@@ -223,38 +199,33 @@ We focus on clarity, judgment and practical next steps — not unnecessary compl
 <div class="container">
 
 <div class="section-number">
-03
+02
 </div>
 
 <h2 class="section-title"
-
 data-en="Presence"
 data-es="Presencia">
-
 Presence
-
 </h2>
 
 <div class="presence-wrapper">
 
 <div class="presence-map">
 
-<span class="spain">Spain</span>
+<div class="map-point mexico">
+<span>Mexico</span>
+</div>
 
-<div class="line"></div>
-
-<span class="mexico">Mexico</span>
+<div class="map-point spain">
+<span>Spain</span>
+</div>
 
 </div>
 
 <p
-
-data-en="Operating across both markets and supporting investors, owners and management teams navigating complex situations on either side of the Atlantic."
-
-data-es="Operando entre ambos mercados y apoyando a inversores, propietarios y equipos directivos en situaciones complejas a ambos lados del Atlántico.">
-
-Operating across both markets and supporting investors, owners and management teams navigating complex situations on either side of the Atlantic.
-
+data-en="Operating across Mexico and Spain, supporting investors, owners and management teams on both sides of the Atlantic."
+data-es="Operando entre México y España, apoyando a inversores, propietarios y equipos directivos a ambos lados del Atlántico.">
+Operating across Mexico and Spain, supporting investors, owners and management teams on both sides of the Atlantic.
 </p>
 
 </div>
@@ -268,21 +239,15 @@ Operating across both markets and supporting investors, owners and management te
 <div class="container">
 
 <h2 class="contact-title"
-
 data-en="Most important decisions don't come with perfect information."
 data-es="Las decisiones más importantes rara vez vienen acompañadas de información perfecta.">
-
 Most important decisions don't come with perfect information.
-
 </h2>
 
 <p class="contact-subtitle"
-
 data-en="That's usually where the conversation starts."
 data-es="Normalmente ahí es donde comienza la conversación.">
-
 That's usually where the conversation starts.
-
 </p>
 
 <a href="mailto:domingo@becrex.com" class="contact-email">
@@ -296,7 +261,7 @@ domingo@becrex.com
 <footer class="footer">
 
 <p>
-BECREX · Spain & Mexico
+BECREX · Mexico & Spain
 </p>
 
 </footer>
