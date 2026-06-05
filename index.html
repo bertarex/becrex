@@ -1,291 +1,581 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8"/>
+<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+<title>BECREX — Strategic Advisory</title>
+<link rel="preconnect" href="https://fonts.googleapis.com"/>
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+<style>
+:root{
+  --bg:#0a0a09;--bg2:#0e0e0d;--surface:#131311;--border:rgba(255,255,255,0.06);
+  --gold:#c9a96e;--gold-dim:rgba(201,169,110,0.09);--cream:#edeae1;--muted:rgba(220,215,204,0.44);
+  --serif:'Cormorant Garamond',Georgia,serif;--sans:'Montserrat',sans-serif;
+  --ease:cubic-bezier(.25,.46,.45,.94);--easeOut:cubic-bezier(.16,1,.3,1);
+}
+*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--muted);font-family:var(--sans);font-weight:300;line-height:1.75;overflow-x:hidden;-webkit-font-smoothing:antialiased}
+::-webkit-scrollbar{width:2px}::-webkit-scrollbar-track{background:var(--bg)}::-webkit-scrollbar-thumb{background:var(--gold)}
+::selection{background:var(--gold);color:var(--bg)}
 
-  <title>BECREX | Deep Expertise & Strategic Insight</title>
+/* NAV */
+#nav{position:fixed;top:0;left:0;right:0;z-index:200;display:flex;align-items:center;justify-content:space-between;padding:0 5vw;height:68px;border-bottom:1px solid transparent;transition:background .5s,border-color .5s}
+#nav.s{background:rgba(10,10,9,.95);backdrop-filter:blur(20px);-webkit-backdrop-filter:blur(20px);border-color:var(--border)}
+.nlogo{font-family:var(--sans);font-weight:600;font-size:.92rem;letter-spacing:.28em;color:#fff;text-decoration:none}
+.nlinks{display:flex;gap:2.2rem;list-style:none}
+.nlinks a{font-size:.6rem;font-weight:400;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);text-decoration:none;position:relative;transition:color .3s}
+.nlinks a::after{content:'';position:absolute;bottom:-2px;left:0;width:0;height:1px;background:var(--gold);transition:width .35s var(--ease)}
+.nlinks a:hover{color:var(--cream)}.nlinks a:hover::after{width:100%}
 
-  <meta name="description" content="High-impact advisory for investors, owners and management teams navigating complexity with clarity, precision and strategic insight.">
+/* LANG TOGGLE */
+.lang-toggle{display:flex;align-items:center;gap:0;border:1px solid var(--border);overflow:hidden}
+.lang-btn{font-size:.58rem;font-weight:400;letter-spacing:.2em;text-transform:uppercase;color:var(--muted);background:none;border:none;cursor:pointer;padding:.35rem .65rem;transition:background .3s,color .3s}
+.lang-btn.active{background:var(--gold);color:var(--bg)}
+.lang-btn:not(.active):hover{color:var(--cream)}
+.lang-sep{width:1px;height:100%;background:var(--border)}
 
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+.nbtn{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:4px}
+.nbtn span{display:block;width:20px;height:1px;background:var(--cream);transition:transform .35s,opacity .35s}
+#mmenu{display:none;position:fixed;inset:0;z-index:199;background:rgba(10,10,9,.97);backdrop-filter:blur(24px);flex-direction:column;align-items:center;justify-content:center;gap:2.8rem;opacity:0;pointer-events:none;transition:opacity .4s}
+#mmenu.open{opacity:1;pointer-events:all}
+.mlink{font-family:var(--serif);font-size:2.6rem;font-weight:300;color:var(--cream);text-decoration:none;letter-spacing:.04em;transition:color .3s}
+.mlink:hover{color:var(--gold)}
+.mlang{display:flex;gap:1rem;margin-top:1rem}
+.mlang-btn{font-size:.7rem;letter-spacing:.2em;color:var(--muted);background:none;border:1px solid var(--border);padding:.4rem .8rem;cursor:pointer;transition:background .3s,color .3s}
+.mlang-btn.active{background:var(--gold);color:var(--bg);border-color:var(--gold)}
 
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+/* HERO */
+#hero{position:relative;height:100vh;min-height:680px;display:flex;align-items:center;justify-content:center;overflow:hidden}
+.hbg{position:absolute;inset:0;background:radial-gradient(ellipse 70% 70% at 55% 38%,rgba(201,169,110,.05) 0%,transparent 65%),radial-gradient(ellipse 45% 50% at 15% 75%,rgba(201,169,110,.03) 0%,transparent 60%),var(--bg)}
+.hgrid{position:absolute;inset:0;background-image:linear-gradient(90deg,var(--border) 1px,transparent 1px),linear-gradient(var(--border) 1px,transparent 1px);background-size:100px 100px;opacity:.22}
+.hcontent{position:relative;z-index:2;text-align:center;padding:0 2rem}
+.hey{font-size:.58rem;font-weight:400;letter-spacing:.4em;text-transform:uppercase;color:var(--gold);margin-bottom:2.4rem}
+.htitle{font-family:var(--serif);font-size:clamp(4.5rem,10.5vw,10.5rem);font-weight:300;line-height:.88;color:var(--cream);margin-bottom:2.8rem}
+.hdiv{width:1px;height:52px;background:linear-gradient(to bottom,var(--gold),transparent);margin:0 auto 2.8rem}
+.hsub{font-size:.8rem;font-weight:300;color:var(--muted);letter-spacing:.03em;line-height:2;max-width:500px;margin:0 auto 3rem}
+.hcta{display:inline-flex;align-items:center;gap:.7rem;font-size:.58rem;font-weight:500;letter-spacing:.28em;text-transform:uppercase;color:var(--cream);text-decoration:none;transition:color .3s,gap .35s}
+.hcta svg{width:14px;height:14px;transition:transform .4s var(--ease)}
+.hcta:hover{color:var(--gold);gap:1.1rem}.hcta:hover svg{transform:translateY(4px)}
+.hscroll{position:absolute;bottom:2.8rem;left:50%;transform:translateX(-50%)}
+.hscroll-line{width:1px;height:52px;background:linear-gradient(to bottom,transparent,var(--gold),transparent);animation:sp 2.2s ease-in-out infinite}
+@keyframes sp{0%,100%{opacity:.2;transform:scaleY(.8)}50%{opacity:1;transform:scaleY(1)}}
 
-  <link rel="stylesheet" href="styles.css">
+/* REVEAL */
+.r{opacity:0;transform:translateY(22px);transition:opacity .9s var(--easeOut),transform .9s var(--easeOut)}
+.r.v{opacity:1;transform:none}
+
+/* SECTIONS */
+section{padding:8.5rem 0}
+.si{max-width:1120px;margin:0 auto;padding:0 5vw}
+.slabel{font-size:.56rem;font-weight:500;letter-spacing:.34em;text-transform:uppercase;color:var(--gold);margin-bottom:4rem}
+
+/* ABOUT */
+#about{border-top:1px solid var(--border)}
+.agrid{display:grid;grid-template-columns:1.1fr .9fr;gap:8rem;align-items:start}
+.atext h2{font-family:var(--serif);font-size:clamp(1.5rem,2.6vw,2.2rem);font-weight:300;color:var(--cream);line-height:1.42;margin-bottom:1.8rem}
+.atext p{font-size:.8rem;color:var(--muted);line-height:2;margin-bottom:1.2rem}
+.atext p:last-child{margin-bottom:0}
+.astats{display:flex;flex-direction:column;gap:2.8rem}
+.astat{border-left:1px solid var(--gold);padding-left:1.5rem}
+.anum{font-family:var(--serif);font-size:3rem;font-weight:300;color:var(--cream);line-height:1;margin-bottom:.3rem}
+.alabel{font-size:.62rem;letter-spacing:.12em;color:var(--muted);text-transform:uppercase}
+
+/* VALUE */
+#value{background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.vgrid{display:grid;grid-template-columns:repeat(2,1fr);background:var(--border);gap:1px}
+.vcard{background:var(--bg2);padding:3.2rem 2.8rem;position:relative;overflow:hidden;cursor:default}
+.vcard::before{content:'';position:absolute;inset:0;background:var(--gold-dim);opacity:0;transition:opacity .4s}
+.vcard:hover::before{opacity:1}
+.vtitle{font-family:var(--serif);font-size:1.28rem;font-weight:400;color:var(--gold);line-height:1.3;margin-bottom:1.1rem}
+.vcard p{font-size:.76rem;color:var(--muted);line-height:1.95}
+.vline{position:absolute;bottom:0;left:0;height:2px;width:0;background:var(--gold);transition:width .55s var(--ease)}
+.vcard:hover .vline{width:100%}
+
+/* WHO */
+#who{border-top:1px solid var(--border)}
+.wgrid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border)}
+.wblock{background:var(--bg);padding:3.5rem;position:relative;overflow:hidden}
+.wblock::before{content:'';position:absolute;inset:0;background:var(--gold-dim);opacity:0;transition:opacity .4s}
+.wblock:hover::before{opacity:1}
+.wblock-tag{font-size:.58rem;letter-spacing:.28em;text-transform:uppercase;color:var(--gold);margin-bottom:1.6rem}
+.wblock p{font-size:.78rem;color:var(--muted);line-height:2}
+
+/* PEOPLE */
+#people{background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
+.pgrid{display:grid;grid-template-columns:1fr 1fr;gap:8rem;align-items:start}
+.pquote{font-family:var(--serif);font-size:clamp(1.6rem,3vw,2.5rem);font-weight:300;font-style:italic;color:var(--cream);line-height:1.44;position:relative;padding-top:1.5rem}
+.pquote::before{content:'\201C';font-family:var(--serif);font-size:6.5rem;color:var(--gold);opacity:.15;position:absolute;top:-1.6rem;left:-.5rem;line-height:1;font-style:normal}
+.psub{font-size:.78rem;color:var(--muted);line-height:2;margin-top:2rem;border-left:1px solid var(--gold);padding-left:1.4rem}
+.fcard{background:var(--surface);border:1px solid var(--border);padding:3rem;position:relative}
+.fcard::before{content:'';position:absolute;top:0;left:0;width:2px;height:100%;background:linear-gradient(to bottom,var(--gold),transparent)}
+.fc-head{display:flex;align-items:center;gap:1.6rem;margin-bottom:2rem;padding-bottom:2rem;border-bottom:1px solid var(--border)}
+.fc-init{width:58px;height:58px;border:1px solid var(--gold);border-radius:50%;display:flex;align-items:center;justify-content:center;font-family:var(--serif);font-size:1.15rem;color:var(--gold);background:var(--gold-dim);flex-shrink:0}
+.fc-role{font-size:.56rem;letter-spacing:.28em;text-transform:uppercase;color:var(--gold);margin-bottom:.35rem}
+.fc-name{font-family:var(--serif);font-size:1.65rem;font-weight:400;color:var(--cream);line-height:1}
+.fc-bio p{font-size:.75rem;color:var(--muted);line-height:2;margin-bottom:1rem}
+.fc-bio p:last-child{margin-bottom:0}
+.fc-tags{display:flex;flex-wrap:wrap;gap:.45rem;margin-top:1.8rem;padding-top:1.8rem;border-top:1px solid var(--border)}
+.fc-tags span{font-size:.56rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted);border:1px solid var(--border);padding:.3rem .7rem;transition:border-color .3s,color .3s;cursor:default}
+.fc-tags span:hover{border-color:var(--gold);color:var(--gold)}
+
+/* PRESENCE */
+#presence{border-top:1px solid var(--border)}
+.prestext{margin-bottom:3.5rem}
+.prestext p{font-family:var(--serif);font-size:clamp(1.2rem,2.3vw,1.75rem);font-weight:300;color:var(--cream);line-height:1.65}
+.mapwrap{background:var(--surface);border:1px solid var(--border);padding:2rem}
+#wmap{width:100%;display:block}
+.mapleg{display:flex;gap:2rem;margin-top:1.4rem;justify-content:flex-end}
+.legitem{display:flex;align-items:center;gap:.5rem;font-size:.6rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted)}
+.legdot{width:6px;height:6px;border-radius:50%;background:var(--gold)}
+
+/* CONTACT */
+#contact{background:var(--bg2);border-top:1px solid var(--border)}
+.clayout{display:grid;grid-template-columns:1fr 1fr;gap:8rem;align-items:center}
+.cleft h2{font-family:var(--serif);font-size:clamp(1.5rem,2.7vw,2.3rem);font-weight:300;color:var(--cream);line-height:1.46;margin-top:1.8rem}
+.cemail{display:block;font-family:var(--serif);font-size:clamp(1rem,1.7vw,1.45rem);font-weight:300;color:var(--cream);text-decoration:none;position:relative;width:fit-content;transition:color .3s}
+.cemail::after{content:'';position:absolute;bottom:-3px;left:0;width:0;height:1px;background:var(--gold);transition:width .4s var(--ease)}
+.cemail:hover{color:var(--gold)}.cemail:hover::after{width:100%}
+.clocs{display:flex;flex-direction:column;gap:1rem;margin-top:2.5rem}
+.cloc{display:flex;align-items:center;gap:.9rem}
+.locdot{width:6px;height:6px;border-radius:50%;background:var(--gold);flex-shrink:0;animation:lp 2.6s ease-in-out infinite}
+.cloc:nth-child(2) .locdot{animation-delay:.9s}
+@keyframes lp{0%,100%{box-shadow:0 0 4px rgba(201,169,110,.2)}50%{box-shadow:0 0 14px rgba(201,169,110,.7)}}
+.loccity{font-size:.68rem;letter-spacing:.16em;text-transform:uppercase;color:var(--muted)}
+
+/* FOOTER */
+footer{background:var(--bg);border-top:1px solid var(--border);padding:2.2rem 0}
+.fi{max-width:1120px;margin:0 auto;padding:0 5vw;display:flex;align-items:center;justify-content:space-between}
+.flogo{font-weight:600;font-size:.8rem;letter-spacing:.28em;color:rgba(220,215,204,.28)}
+.fcopy{font-size:.58rem;letter-spacing:.1em;color:rgba(220,215,204,.18)}
+
+/* RESPONSIVE */
+@media(max-width:1024px){
+  .agrid,.pgrid,.clayout{grid-template-columns:1fr;gap:4rem}
+  .astats{flex-direction:row;flex-wrap:wrap;gap:2rem}
+  .vgrid,.wgrid{grid-template-columns:1fr}
+}
+@media(max-width:768px){
+  #nav{padding:0 1.4rem}
+  .nlinks,.lang-toggle{display:none}
+  .nbtn{display:flex}
+  #mmenu{display:flex}
+  section{padding:5.5rem 0}
+  .si{padding:0 1.4rem}
+  .slabel{margin-bottom:2.5rem}
+  .htitle{font-size:clamp(3.5rem,14vw,5.5rem)}
+  .fcard,.wblock{padding:2rem}
+  .fi{padding:0 1.4rem}
+}
+</style>
 </head>
-
 <body>
 
-<header class="header">
-  <div class="logo">BECREX</div>
-
-  <nav class="nav">
-    <a href="#about" data-en="About Us" data-es="Quiénes Somos">About Us</a>
-    <a href="#value" data-en="Value" data-es="Valor">Value</a>
-    <a href="#people" data-en="People" data-es="Personas">People</a>
-    <a href="#team" data-en="Team" data-es="Equipo">Team</a>
-    <a href="#contact" data-en="Contact" data-es="Contacto">Contact</a>
-
-    <button id="languageToggle">ES</button>
-  </nav>
-</header>
-
-<main>
-
-<section id="home" class="hero">
-  <div class="hero-content">
-
-    <p class="hero-eyebrow"
-       data-en="Deep Expertise"
-       data-es="Experiencia Profunda">
-      Deep Expertise
-    </p>
-
-    <h1 class="hero-title"
-        data-en="Strategic Insight"
-        data-es="Visión Estratégica">
-      Strategic Insight
-    </h1>
-
-    <p class="hero-description"
-       data-en="Across industries, investors, owners, and management teams face increasing complexity—evolving customer expectations, rising operational pressures, volatile capital markets, and a dynamic competitive landscape."
-       data-es="En distintos sectores, inversores, propietarios y equipos directivos enfrentan una complejidad creciente: cambios en las expectativas de los clientes, presión operativa, mercados de capital volátiles y un entorno competitivo dinámico.">
-      Across industries, investors, owners, and management teams face increasing complexity—evolving customer expectations, rising operational pressures, volatile capital markets, and a dynamic competitive landscape.
-    </p>
-
-    <p class="hero-description"
-       data-en="We help clients cut through that complexity with clarity and precision."
-       data-es="Ayudamos a nuestros clientes a navegar esa complejidad con claridad y precisión.">
-      We help clients cut through that complexity with clarity and precision.
-    </p>
-
-    <p class="hero-description"
-       data-en="Our high-impact advisory empowers better strategic decisions — creating real value through performance improvement, capital structure optimization, and sensible, actionable roadmaps that strengthen long-term resilience and unlock the full potential of each asset."
-       data-es="Nuestro asesoramiento de alto impacto impulsa mejores decisiones estratégicas, creando valor real mediante la mejora del desempeño, la optimización de estructuras de capital y hojas de ruta sensatas y accionables que fortalecen la resiliencia a largo plazo y desbloquean el potencial de cada activo.">
-      Our high-impact advisory empowers better strategic decisions — creating real value through performance improvement, capital structure optimization, and sensible, actionable roadmaps that strengthen long-term resilience and unlock the full potential of each asset.
-    </p>
-
+<nav id="nav">
+  <div class="nlogo">BECREX</div>
+  <ul class="nlinks">
+    <li><a href="#about"   data-i18n="nav.about">About</a></li>
+    <li><a href="#value"   data-i18n="nav.value">Value</a></li>
+    <li><a href="#who"     data-i18n="nav.who">Who We Work With</a></li>
+    <li><a href="#people"  data-i18n="nav.people">People</a></li>
+    <li><a href="#contact" data-i18n="nav.contact">Contact</a></li>
+  </ul>
+  <div class="lang-toggle">
+    <button class="lang-btn active" data-lang="en">EN</button>
+    <div class="lang-sep"></div>
+    <button class="lang-btn" data-lang="es">ES</button>
   </div>
-</section>
+  <button class="nbtn" aria-label="Menu"><span></span><span></span></button>
+</nav>
 
-<section id="about" class="section">
-  <div class="container">
-
-    <div class="section-number">01</div>
-
-    <h2 class="section-title"
-        data-en="About Us"
-        data-es="Quiénes Somos">
-      About Us
-    </h2>
-
-    <div class="section-content">
-      <p
-        data-en="BECREX advises investors, owners, and management teams facing complex situations, consequential decisions, and moments where clarity matters."
-        data-es="BECREX asesora a inversores, propietarios y equipos directivos que afrontan situaciones complejas, decisiones relevantes y momentos en los que la claridad es fundamental.">
-        BECREX advises investors, owners, and management teams facing complex situations, consequential decisions, and moments where clarity matters.
-      </p>
-
-      <p
-        data-en="We combine deep expertise, strategic judgment, and practical execution to help clients move from complexity to action."
-        data-es="Combinamos experiencia profunda, criterio estratégico y ejecución práctica para ayudar a nuestros clientes a transformar la complejidad en acción.">
-        We combine deep expertise, strategic judgment, and practical execution to help clients move from complexity to action.
-      </p>
-    </div>
-
+<div id="mmenu">
+  <a href="#about"   class="mlink" data-i18n="nav.about">About</a>
+  <a href="#value"   class="mlink" data-i18n="nav.value">Value</a>
+  <a href="#who"     class="mlink" data-i18n="nav.who">Who We Work With</a>
+  <a href="#people"  class="mlink" data-i18n="nav.people">People</a>
+  <a href="#contact" class="mlink" data-i18n="nav.contact">Contact</a>
+  <div class="mlang">
+    <button class="mlang-btn active" data-lang="en">EN</button>
+    <button class="mlang-btn" data-lang="es">ES</button>
   </div>
-</section>
+</div>
 
-<section id="value" class="section section-light">
-  <div class="container">
-
-    <div class="section-number">02</div>
-
-    <h2 class="section-title"
-        data-en="Value"
-        data-es="Valor">
-      Value
-    </h2>
-
-    <div class="cards">
-
-      <div class="card">
-        <h3 data-en="Performance Improvement" data-es="Mejora del Desempeño">
-          Performance Improvement
-        </h3>
-        <p data-en="We identify practical levers to improve operating performance, strengthen resilience, and unlock value."
-           data-es="Identificamos palancas prácticas para mejorar el desempeño operativo, fortalecer la resiliencia y desbloquear valor.">
-          We identify practical levers to improve operating performance, strengthen resilience, and unlock value.
-        </p>
-      </div>
-
-      <div class="card">
-        <h3 data-en="Capital Structure Optimization" data-es="Optimización de Capital">
-          Capital Structure Optimization
-        </h3>
-        <p data-en="We help evaluate capital alternatives with discipline, clarity, and long-term perspective."
-           data-es="Ayudamos a evaluar alternativas de capital con disciplina, claridad y perspectiva de largo plazo.">
-          We help evaluate capital alternatives with discipline, clarity, and long-term perspective.
-        </p>
-      </div>
-
-      <div class="card">
-        <h3 data-en="Strategic Roadmaps" data-es="Planes Estratégicos">
-          Strategic Roadmaps
-        </h3>
-        <p data-en="We translate complexity into sensible, actionable plans aligned with the full potential of each asset."
-           data-es="Transformamos la complejidad en planes sensatos y accionables, alineados con el potencial de cada activo.">
-          We translate complexity into sensible, actionable plans aligned with the full potential of each asset.
-        </p>
-      </div>
-
-    </div>
-
-  </div>
-</section>
-
-<section id="people" class="section">
-  <div class="container">
-
-    <div class="section-number">03</div>
-
-    <h2 class="section-title"
-        data-en="People"
-        data-es="Personas">
-      People
-    </h2>
-
-    <div class="section-content">
-      <p
-        data-en="Every engagement is led with senior attention, discretion, and a direct understanding of what is at stake."
-        data-es="Cada proyecto se lidera con atención senior, discreción y una comprensión directa de lo que está en juego.">
-        Every engagement is led with senior attention, discretion, and a direct understanding of what is at stake.
-      </p>
-
-      <p
-        data-en="We stay close to the people, the asset, and the decision-making process from diagnosis to execution."
-        data-es="Nos mantenemos cerca de las personas, del activo y del proceso de decisión desde el diagnóstico hasta la ejecución.">
-        We stay close to the people, the asset, and the decision-making process from diagnosis to execution.
-      </p>
-    </div>
-
-  </div>
-</section>
-
-<section id="team" class="section section-light">
-  <div class="container">
-
-    <div class="section-number">04</div>
-
-    <h2 class="section-title"
-        data-en="Team"
-        data-es="Equipo">
-      Team
-    </h2>
-
-    <div class="team-profile">
-
-      <div class="team-intro">
-        <p class="team-role"
-           data-en="Founder"
-           data-es="Fundador">
-          Founder
-        </p>
-
-        <h3>Domingo Rex</h3>
-      </div>
-
-      <div class="team-text">
-        <p>
-          Senior financial advisor and strategic practitioner with over 25 years of experience across banking, credit, and investment advisory in Europe and Latin America. He has advised financial institutions, funds, and corporate clients on complex transactions, particularly within the hospitality, real estate, and special situations sectors.
-        </p>
-
-        <p>
-          Previously, Domingo held senior roles at Banco CAM, including Managing Director and Country Head in Mexico, where he managed a tourism-focused credit portfolio of nearly $2 billion. He also advised major Spanish banks such as CaixaBank and Bankia during their strategic divestments in Mexico, accelerating execution while preserving shareholder value.
-        </p>
-
-        <p>
-          His advisory experience includes supporting private investors such as Rodina, guiding and executing its initial hospitality investments, as well as assisting banks and institutional clients in tourism and real estate transactions across Mexico and the Caribbean. He is known for his technical expertise, regional insight, honesty, and consistent delivery.
-        </p>
-
-        <p>
-          Domingo partners with investors, institutions, and operators to assess opportunities, structure complex deals, and create lasting value across evolving markets.
-        </p>
-      </div>
-
-    </div>
-
-  </div>
-</section>
-
-<section id="presence" class="section">
-  <div class="container">
-
-    <div class="section-number">05</div>
-
-    <h2 class="section-title"
-        data-en="Presence"
-        data-es="Presencia">
-      Presence
-    </h2>
-
-    <div class="world-map">
-
-      <img 
-        src="https://upload.wikimedia.org/wikipedia/commons/8/83/Equirectangular_projection_SW.jpg" 
-        alt="World map"
-      >
-
-      <div class="map-marker mexico">
-        <span>Mexico</span>
-      </div>
-
-      <div class="map-marker spain">
-        <span>Spain</span>
-      </div>
-
-    </div>
-
-    <p class="presence-text"
-       data-en="Operating across Mexico and Spain, supporting investors, owners and management teams on both sides of the Atlantic."
-       data-es="Operando entre México y España, apoyando a inversores, propietarios y equipos directivos a ambos lados del Atlántico.">
-      Operating across Mexico and Spain, supporting investors, owners and management teams on both sides of the Atlantic.
-    </p>
-
-  </div>
-</section>
-
-<section id="contact" class="contact-section">
-  <div class="container">
-
-    <h2 class="contact-title"
-        data-en="Most important decisions don't come with perfect information."
-        data-es="Las decisiones más importantes rara vez vienen acompañadas de información perfecta.">
-      Most important decisions don't come with perfect information.
-    </h2>
-
-    <p class="contact-subtitle"
-       data-en="That's usually where the conversation starts."
-       data-es="Normalmente ahí es donde comienza la conversación.">
-      That's usually where the conversation starts.
-    </p>
-
-    <a href="mailto:domingo@becrex.com" class="contact-email">
-      domingo@becrex.com
+<!-- HERO -->
+<section id="hero">
+  <div class="hbg"><div class="hgrid"></div></div>
+  <div class="hcontent">
+    <div class="hey r" data-i18n="hero.eyebrow">Strategic Advisory · Mexico &amp; Spain</div>
+    <h1 class="htitle r">BECREX</h1>
+    <div class="hdiv r"></div>
+    <p class="hsub r" data-i18n="hero.sub">We advise investors, owners, and management teams on complex decisions — combining deep expertise with practical execution.</p>
+    <a href="#about" class="hcta r">
+      <span data-i18n="hero.cta">Learn more</span>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
     </a>
+  </div>
+  <div class="hscroll"><div class="hscroll-line"></div></div>
+</section>
 
+<!-- ABOUT -->
+<section id="about">
+  <div class="si">
+    <div class="slabel r" data-i18n="about.label">01 — About</div>
+    <div class="agrid">
+      <div class="atext r">
+        <h2 data-i18n="about.h2">We advise investors, owners, and management teams facing complex situations, consequential decisions, and moments where clarity matters.</h2>
+        <p data-i18n="about.p1">We combine deep expertise, strategic judgment, and practical execution to help clients move from complexity to action.</p>
+        <p data-i18n="about.p2">We understand the weight of strategic decisions because we have made them. That experience shapes how we think, how we advise, and how we stay close to what matters. Every engagement is led by us — discreetly, directly, and with purpose.</p>
+      </div>
+      <div class="astats r">
+        <div class="astat">
+          <div class="anum" data-target="25">0</div>
+          <div class="alabel" data-i18n="about.stat1">Years of experience</div>
+        </div>
+        <div class="astat">
+          <div class="anum" data-target="2" data-suffix="bn">0</div>
+          <div class="alabel" data-i18n="about.stat2">Credit portfolio managed</div>
+        </div>
+        <div class="astat">
+          <div class="anum" data-target="2">0</div>
+          <div class="alabel" data-i18n="about.stat3">Markets — Mexico &amp; Spain</div>
+        </div>
+      </div>
+    </div>
   </div>
 </section>
 
-</main>
+<!-- VALUE -->
+<section id="value">
+  <div class="si">
+    <div class="slabel r" data-i18n="value.label">02 — Where We Create Value</div>
+    <div class="vgrid">
+      <div class="vcard r">
+        <div class="vtitle" data-i18n="value.t1">Investment Strategy</div>
+        <p data-i18n="value.p1">Helping guide capital deployment, divestment, and repositioning decisions — grounded in asset-level insight, market intelligence, and strategic support throughout critical negotiations.</p>
+        <div class="vline"></div>
+      </div>
+      <div class="vcard r">
+        <div class="vtitle" data-i18n="value.t2">Capital Structure</div>
+        <p data-i18n="value.p2">Structuring financial architecture that enhances resilience, preserves flexibility, and maximizes value across the capital stack.</p>
+        <div class="vline"></div>
+      </div>
+      <div class="vcard r">
+        <div class="vtitle" data-i18n="value.t3">Strategic Alignment</div>
+        <p data-i18n="value.p3">Providing senior-level guidance to align stakeholders and support value creation when strategic repositioning or renewed focus is required.</p>
+        <div class="vline"></div>
+      </div>
+      <div class="vcard r">
+        <div class="vtitle" data-i18n="value.t4">Asset Performance</div>
+        <p data-i18n="value.p4">Enhancing portfolio asset performance across the investment lifecycle — aligning profitability with long-term strategic goals and value-creation plans.</p>
+        <div class="vline"></div>
+      </div>
+    </div>
+  </div>
+</section>
 
-<footer class="footer">
-  <p>BECREX · Mexico & Spain</p>
+<!-- WHO -->
+<section id="who">
+  <div class="si">
+    <div class="slabel r" data-i18n="who.label">03 — Who We Work With</div>
+    <div class="wgrid">
+      <div class="wblock r">
+        <div class="wblock-tag" data-i18n="who.t1">Investors &amp; Credit Providers</div>
+        <p data-i18n="who.p1">We advise institutional investors, family offices, and credit providers on strategic exposure across target sectors — from underwriting and target selection to capital structuring, management alignment, and portfolio management. Whether equity or debt, our work focuses on protecting downside, identifying upside, and ensuring strategic clarity across every decision and transaction.</p>
+      </div>
+      <div class="wblock r">
+        <div class="wblock-tag" data-i18n="who.t2">Asset Owners &amp; Boards</div>
+        <p data-i18n="who.p2">We support asset owners and boards in enhancing long-term value, navigating complex decisions, and aligning stakeholders — from performance oversight to capital planning, repositioning strategy, and pre- and post-deal execution.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PEOPLE -->
+<section id="people">
+  <div class="si">
+    <div class="slabel r" data-i18n="people.label">04 — People</div>
+    <div class="pgrid">
+      <div class="r">
+        <div class="pquote" data-i18n="people.quote">Every engagement is led with senior attention, discretion, and a direct understanding of what is at stake.</div>
+        <p class="psub" data-i18n="people.sub">We stay close to the people, the asset, and the decision-making process — from diagnosis to execution. No hand-offs. No dilution of expertise.</p>
+      </div>
+      <div class="fcard r">
+        <div class="fc-head">
+          <div class="fc-init">DR</div>
+          <div>
+            <div class="fc-role" data-i18n="people.role">Founder</div>
+            <div class="fc-name">Domingo Rex</div>
+          </div>
+        </div>
+        <div class="fc-bio">
+          <p data-i18n="people.bio1">Senior financial advisor and strategic practitioner with over 25 years of experience across banking, credit, and investment advisory in Europe and Latin America, with a focus on complex transactions in hospitality, real estate, and special situations.</p>
+          <p data-i18n="people.bio2">Previously held senior roles at Banco CAM, including Managing Director and Country Head in Mexico, managing a tourism-focused credit portfolio of nearly $2 billion. Advised CaixaBank and Bankia during their strategic divestments in Mexico, accelerating execution while preserving shareholder value.</p>
+          <p data-i18n="people.bio3">Known for technical expertise, regional insight, and consistent delivery across investors, institutions, and operators on both sides of the Atlantic.</p>
+        </div>
+        <div class="fc-tags">
+          <span>Banking</span><span>Credit Advisory</span><span>Real Estate</span><span>Hospitality</span><span>Special Situations</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PRESENCE -->
+<section id="presence">
+  <div class="si">
+    <div class="slabel r" data-i18n="presence.label">05 — Presence</div>
+    <div class="prestext r">
+      <p data-i18n="presence.text">Operating across Mexico and Spain, supporting investors, owners and management teams on both sides of the Atlantic.</p>
+    </div>
+    <div class="mapwrap r">
+      <canvas id="wmap"></canvas>
+      <div class="mapleg">
+        <div class="legitem"><span class="legdot"></span>Mexico City</div>
+        <div class="legitem"><span class="legdot"></span>Madrid</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONTACT -->
+<section id="contact">
+  <div class="si">
+    <div class="clayout">
+      <div class="cleft r">
+        <div class="slabel" data-i18n="nav.contact">Contact</div>
+        <h2 data-i18n="contact.h2">Get in touch</h2>
+      </div>
+      <div class="r">
+        <a href="mailto:domingo@becrex.com" class="cemail">domingo@becrex.com</a>
+        <div class="clocs">
+          <div class="cloc"><div class="locdot"></div><div class="loccity" data-i18n="contact.loc1">Mexico</div></div>
+          <div class="cloc"><div class="locdot"></div><div class="loccity" data-i18n="contact.loc2">Spain</div></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="fi">
+    <div class="flogo">BECREX</div>
+    <div class="fcopy">Mexico &amp; Spain · <span id="yr"></span></div>
+  </div>
 </footer>
 
-<script src="script.js"></script>
+<script>
+/* ── TRANSLATIONS ── */
+const i18n = {
+  en: {
+    "nav.about":   "About",
+    "nav.value":   "Value",
+    "nav.who":     "Who We Work With",
+    "nav.people":  "People",
+    "nav.contact": "Contact",
+    "hero.eyebrow":"Strategic Advisory · Mexico & Spain",
+    "hero.sub":    "We advise investors, owners, and management teams on complex decisions — combining deep expertise with practical execution.",
+    "hero.cta":    "Learn more",
+    "about.label": "01 — About",
+    "about.h2":    "We advise investors, owners, and management teams facing complex situations, consequential decisions, and moments where clarity matters.",
+    "about.p1":    "We combine deep expertise, strategic judgment, and practical execution to help clients move from complexity to action.",
+    "about.p2":    "We understand the weight of strategic decisions because we have made them. That experience shapes how we think, how we advise, and how we stay close to what matters. Every engagement is led by us — discreetly, directly, and with purpose.",
+    "about.stat1": "Years of experience",
+    "about.stat2": "Credit portfolio managed",
+    "about.stat3": "Markets — Mexico & Spain",
+    "value.label": "02 — Where We Create Value",
+    "value.t1":    "Investment Strategy",
+    "value.p1":    "Helping guide capital deployment, divestment, and repositioning decisions — grounded in asset-level insight, market intelligence, and strategic support throughout critical negotiations.",
+    "value.t2":    "Capital Structure",
+    "value.p2":    "Structuring financial architecture that enhances resilience, preserves flexibility, and maximizes value across the capital stack.",
+    "value.t3":    "Strategic Alignment",
+    "value.p3":    "Providing senior-level guidance to align stakeholders and support value creation when strategic repositioning or renewed focus is required.",
+    "value.t4":    "Asset Performance",
+    "value.p4":    "Enhancing portfolio asset performance across the investment lifecycle — aligning profitability with long-term strategic goals and value-creation plans.",
+    "who.label":   "03 — Who We Work With",
+    "who.t1":      "Investors & Credit Providers",
+    "who.p1":      "We advise institutional investors, family offices, and credit providers on strategic exposure across target sectors — from underwriting and target selection to capital structuring, management alignment, and portfolio management. Whether equity or debt, our work focuses on protecting downside, identifying upside, and ensuring strategic clarity across every decision and transaction.",
+    "who.t2":      "Asset Owners & Boards",
+    "who.p2":      "We support asset owners and boards in enhancing long-term value, navigating complex decisions, and aligning stakeholders — from performance oversight to capital planning, repositioning strategy, and pre- and post-deal execution.",
+    "people.label":"04 — People",
+    "people.quote":"Every engagement is led with senior attention, discretion, and a direct understanding of what is at stake.",
+    "people.sub":  "We stay close to the people, the asset, and the decision-making process — from diagnosis to execution. No hand-offs. No dilution of expertise.",
+    "people.role": "Founder",
+    "people.bio1": "Senior financial advisor and strategic practitioner with over 25 years of experience across banking, credit, and investment advisory in Europe and Latin America, with a focus on complex transactions in hospitality, real estate, and special situations.",
+    "people.bio2": "Previously held senior roles at Banco CAM, including Managing Director and Country Head in Mexico, managing a tourism-focused credit portfolio of nearly $2 billion. Advised CaixaBank and Bankia during their strategic divestments in Mexico, accelerating execution while preserving shareholder value.",
+    "people.bio3": "Known for technical expertise, regional insight, and consistent delivery across investors, institutions, and operators on both sides of the Atlantic.",
+    "presence.label":"05 — Presence",
+    "presence.text":"Operating across Mexico and Spain, supporting investors, owners and management teams on both sides of the Atlantic.",
+    "contact.h2":  "Get in touch",
+    "contact.loc1":"Mexico",
+    "contact.loc2":"Spain",
+  },
+  es: {
+    "nav.about":   "Nosotros",
+    "nav.value":   "Valor",
+    "nav.who":     "Con Quién Trabajamos",
+    "nav.people":  "Equipo",
+    "nav.contact": "Contacto",
+    "hero.eyebrow":"Asesoría Estratégica · México y España",
+    "hero.sub":    "Asesoramos a inversores, propietarios y equipos directivos en decisiones complejas, combinando experiencia profunda con ejecución práctica.",
+    "hero.cta":    "Más información",
+    "about.label": "01 — Nosotros",
+    "about.h2":    "Asesoramos a inversores, propietarios y equipos directivos que enfrentan situaciones complejas, decisiones trascendentes y momentos en los que la claridad es fundamental.",
+    "about.p1":    "Combinamos experiencia profunda, criterio estratégico y ejecución práctica para ayudar a nuestros clientes a pasar de la complejidad a la acción.",
+    "about.p2":    "Entendemos el peso de las decisiones estratégicas porque las hemos tomado. Esa experiencia define cómo pensamos, cómo asesoramos y cómo permanecemos cerca de lo que importa. Cada mandato es liderado por nosotros — con discreción, rigor y propósito.",
+    "about.stat1": "Años de experiencia",
+    "about.stat2": "Cartera de crédito gestionada",
+    "about.stat3": "Mercados — México y España",
+    "value.label": "02 — Dónde Creamos Valor",
+    "value.t1":    "Estrategia de Inversión",
+    "value.p1":    "Orientamos decisiones de despliegue de capital, desinversión y reposicionamiento — con base en el conocimiento del activo, inteligencia de mercado y apoyo estratégico en negociaciones críticas.",
+    "value.t2":    "Estructura de Capital",
+    "value.p2":    "Diseñamos arquitecturas financieras que refuerzan la resiliencia, preservan la flexibilidad y maximizan el valor en toda la estructura de capital.",
+    "value.t3":    "Alineación Estratégica",
+    "value.p3":    "Aportamos orientación de alto nivel para alinear a los grupos de interés y apoyar la creación de valor cuando se requiere reposicionamiento o un nuevo enfoque estratégico.",
+    "value.t4":    "Rendimiento del Activo",
+    "value.p4":    "Mejoramos el rendimiento de los activos en cartera a lo largo del ciclo de inversión, alineando rentabilidad con objetivos estratégicos y planes de creación de valor.",
+    "who.label":   "03 — Con Quién Trabajamos",
+    "who.t1":      "Inversores y Proveedores de Capital",
+    "who.p1":      "Asesoramos a inversores institucionales, family offices y proveedores de crédito sobre exposición estratégica en sectores objetivo — desde el análisis y la selección de activos hasta la estructuración del capital, la alineación directiva y la gestión de cartera. Tanto en equity como en deuda, nuestro trabajo se centra en proteger el riesgo bajista, identificar el potencial alcista y garantizar claridad estratégica en cada decisión.",
+    "who.t2":      "Propietarios de Activos y Consejos",
+    "who.p2":      "Apoyamos a propietarios de activos y órganos de gobierno en la creación de valor a largo plazo, la gestión de decisiones complejas y la alineación de grupos de interés — desde la supervisión operativa hasta la planificación de capital, el reposicionamiento y la ejecución pre y post transacción.",
+    "people.label":"04 — Equipo",
+    "people.quote":"Cada mandato es liderado con atención directiva, discreción y comprensión directa de lo que está en juego.",
+    "people.sub":  "Permanecemos cerca de las personas, el activo y el proceso de toma de decisiones — desde el diagnóstico hasta la ejecución. Sin delegaciones. Sin dilución de experiencia.",
+    "people.role": "Fundador",
+    "people.bio1": "Asesor financiero senior y profesional estratégico con más de 25 años de experiencia en banca, crédito y asesoría de inversión en Europa y Latinoamérica, con foco en transacciones complejas en los sectores de hotelería, inmobiliario y situaciones especiales.",
+    "people.bio2": "Ocupó cargos directivos en Banco CAM, incluyendo Director General y Country Head en México, gestionando una cartera de crédito turístico de casi 2.000 millones de dólares. Asesoró a CaixaBank y Bankia en sus desinversiones estratégicas en México, acelerando la ejecución y preservando el valor para el accionista.",
+    "people.bio3": "Reconocido por su expertise técnico, conocimiento regional y capacidad de ejecución consistente entre inversores, instituciones y operadores a ambos lados del Atlántico.",
+    "presence.label":"05 — Presencia",
+    "presence.text":"Operamos en México y España, apoyando a inversores, propietarios y equipos directivos en ambos lados del Atlántico.",
+    "contact.h2":  "Contacto",
+    "contact.loc1":"México",
+    "contact.loc2":"España",
+  }
+};
 
+let lang = 'en';
+
+function applyLang(l) {
+  lang = l;
+  document.querySelectorAll('[data-i18n]').forEach(el => {
+    const key = el.getAttribute('data-i18n');
+    if (i18n[l][key] !== undefined) el.textContent = i18n[l][key];
+  });
+  document.querySelectorAll('.lang-btn, .mlang-btn').forEach(btn => {
+    btn.classList.toggle('active', btn.getAttribute('data-lang') === l);
+  });
+  document.documentElement.lang = l;
+}
+
+document.querySelectorAll('.lang-btn, .mlang-btn').forEach(btn => {
+  btn.addEventListener('click', () => applyLang(btn.getAttribute('data-lang')));
+});
+
+/* ── NAV ── */
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => nav.classList.toggle('s', scrollY > 40), {passive:true});
+
+/* ── MOBILE MENU ── */
+const nbtn = document.querySelector('.nbtn'), mm = document.getElementById('mmenu');
+let open = false;
+function tog(s) {
+  open = s; mm.classList.toggle('open', s);
+  const sp = nbtn.querySelectorAll('span');
+  sp[0].style.transform = s ? 'translateY(6px) rotate(45deg)' : '';
+  sp[1].style.transform = s ? 'translateY(-6px) rotate(-45deg)' : '';
+}
+nbtn.addEventListener('click', () => tog(!open));
+document.querySelectorAll('.mlink').forEach(l => l.addEventListener('click', () => tog(false)));
+
+/* ── REVEAL ── */
+const io = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      const sibs = Array.from(e.target.parentElement.querySelectorAll('.r:not(.v)'));
+      setTimeout(() => e.target.classList.add('v'), sibs.indexOf(e.target) * 85);
+      io.unobserve(e.target);
+    }
+  });
+}, {threshold: .08});
+document.querySelectorAll('.r').forEach(el => io.observe(el));
+
+/* ── COUNTERS ── */
+function count(el, target, sfx) {
+  const s = performance.now(), d = 1500, ease = t => t < .5 ? 2*t*t : -1+(4-2*t)*t;
+  (function tick(now) {
+    const p = Math.min((now-s)/d, 1);
+    el.textContent = Math.round(ease(p)*target) + (sfx||'');
+    if (p < 1) requestAnimationFrame(tick);
+    else el.textContent = target + (sfx||'');
+  })(performance.now());
+}
+const cio = new IntersectionObserver(en => {
+  en.forEach(e => {
+    if (e.isIntersecting && !e.target.dataset.done) {
+      e.target.dataset.done = 1;
+      const t = +e.target.dataset.target, sfx = (e.target.dataset.suffix||'') + (t===25?'+':'');
+      count(e.target, t, sfx);
+      cio.unobserve(e.target);
+    }
+  });
+}, {threshold: .5});
+document.querySelectorAll('.anum').forEach(el => cio.observe(el));
+
+/* ── YEAR ── */
+document.getElementById('yr').textContent = new Date().getFullYear();
+
+/* ── MAP ── */
+(function(){
+  const cv = document.getElementById('wmap');
+  if (!cv) return;
+  const dpr = Math.min(devicePixelRatio||1, 2);
+  function init() {
+    const W = cv.parentElement.clientWidth - 64, H = Math.round(W * .44);
+    cv.style.width = W+'px'; cv.style.height = H+'px';
+    cv.width = W*dpr; cv.height = H*dpr;
+    return {W, H};
+  }
+  let d = init();
+  const ctx = cv.getContext('2d');
+  ctx.scale(dpr, dpr);
+  function lx(lon,W){return(lon+180)/360*W}
+  function ly(lat,W,H){const r=lat*Math.PI/180,m=Math.log(Math.tan(Math.PI/4+r/2));return H/2-m*H/(2*Math.PI)*1.36+H*.05}
+  const shapes=[
+    [[-168,71],[-141,61],[-130,55],[-125,49],[-120,34],[-117,28],[-105,20],[-87,16],[-83,10],[-78,8],[-75,10],[-65,18],[-62,16],[-59,13],[-63,10],[-75,12],[-82,9],[-87,16],[-90,15],[-92,18],[-85,23],[-80,25],[-81,30],[-75,35],[-70,43],[-65,44],[-55,47],[-53,54],[-60,58],[-65,62],[-68,68],[-80,73],[-95,76],[-110,75],[-130,71],[-148,71],[-168,71]],
+    [[-45,61],[-42,65],[-20,76],[-18,83],[-40,84],[-58,83],[-73,77],[-73,70],[-55,60],[-45,61]],
+    [[-80,8],[-77,3],[-70,-2],[-50,-2],[-35,-5],[-35,-10],[-40,-20],[-45,-23],[-48,-28],[-52,-33],[-58,-38],[-62,-41],[-65,-46],[-66,-52],[-68,-56],[-63,-55],[-58,-52],[-55,-46],[-50,-29],[-48,-20],[-40,-10],[-36,-3],[-40,3],[-52,5],[-60,5],[-67,8],[-77,8],[-80,8]],
+    [[-10,36],[0,36],[5,36],[5,43],[0,43],[-5,44],[-2,48],[3,50],[8,53],[10,57],[16,58],[22,60],[25,65],[28,70],[20,70],[16,70],[14,58],[10,57],[5,53],[0,50],[5,47],[8,44],[3,44],[0,43],[-5,44],[-7,38],[-10,37],[-10,36]],
+    [[-9,37],[-7,37],[-5,36],[0,36],[3,42],[-2,44],[-7,44],[-9,39],[-9,37]],
+    [[4,57],[6,57],[8,58],[8,62],[14,64],[18,68],[26,70],[28,72],[20,74],[15,70],[14,65],[8,62],[5,57],[4,57]],
+    [[-6,34],[0,30],[10,30],[25,30],[32,30],[37,22],[44,12],[50,12],[44,5],[38,-2],[35,-5],[35,-12],[32,-18],[28,-22],[32,-26],[28,-30],[18,-34],[14,-34],[14,-28],[10,-22],[8,-10],[2,-2],[0,4],[2,6],[10,6],[14,12],[10,16],[2,24],[-6,30],[-8,28],[-12,20],[-12,14],[-8,12],[-15,12],[-18,15],[-18,24],[-14,28],[-6,34]],
+    [[26,70],[30,73],[50,75],[80,76],[100,73],[120,72],[140,72],[160,68],[163,60],[155,55],[145,44],[135,35],[125,25],[120,20],[110,18],[105,10],[100,4],[95,5],[90,20],[80,24],[70,22],[62,22],[58,24],[55,30],[45,30],[40,35],[35,36],[30,36],[26,42],[28,46],[30,50],[36,54],[40,60],[50,66],[60,70],[70,72],[80,74],[100,73]],
+    [[68,22],[72,20],[76,8],[80,8],[84,14],[80,20],[74,24],[68,24],[68,22]],
+    [[114,-22],[116,-20],[122,-18],[128,-14],[130,-12],[135,-12],[136,-14],[138,-18],[140,-18],[142,-12],[148,-20],[152,-24],[154,-28],[152,-32],[148,-38],[144,-38],[138,-36],[132,-34],[126,-34],[118,-30],[114,-26],[114,-22]],
+  ];
+  const pins = [{lon:-99.1,lat:19.4,label:'Mexico City'},{lon:-3.7,lat:40.4,label:'Madrid'}];
+  function draw(prog) {
+    const {W,H} = d;
+    ctx.clearRect(0,0,W,H); ctx.fillStyle='#131311'; ctx.fillRect(0,0,W,H);
+    ctx.strokeStyle='rgba(255,255,255,.025)'; ctx.lineWidth=.5;
+    for(let la=-60;la<=60;la+=30){ctx.beginPath();ctx.moveTo(0,ly(la,W,H));ctx.lineTo(W,ly(la,W,H));ctx.stroke()}
+    for(let lo=-120;lo<=120;lo+=60){ctx.beginPath();ctx.moveTo(lx(lo,W),0);ctx.lineTo(lx(lo,W),H);ctx.stroke()}
+    shapes.forEach(sh=>{ctx.beginPath();sh.forEach(([lo,la],i)=>{const x=lx(lo,W),y=ly(la,W,H);i===0?ctx.moveTo(x,y):ctx.lineTo(x,y)});ctx.closePath();ctx.fillStyle='rgba(201,169,110,.05)';ctx.fill();ctx.strokeStyle='rgba(201,169,110,.3)';ctx.lineWidth=.7;ctx.stroke()});
+    pins.forEach(({lon,lat,label})=>{
+      const x=lx(lon,W),y=ly(lat,W,H),pulse=(Date.now()%2600)/2600,r=4+pulse*16,a=(1-pulse)*.35*prog;
+      ctx.beginPath();ctx.arc(x,y,r,0,Math.PI*2);ctx.strokeStyle=`rgba(201,169,110,${a})`;ctx.lineWidth=1;ctx.stroke();
+      ctx.beginPath();ctx.arc(x,y,5,0,Math.PI*2);ctx.strokeStyle=`rgba(201,169,110,${.42*prog})`;ctx.lineWidth=1;ctx.stroke();
+      ctx.beginPath();ctx.arc(x,y,2.8,0,Math.PI*2);ctx.fillStyle=`rgba(201,169,110,${prog})`;ctx.fill();
+      ctx.font=`300 ${Math.max(7,W*.0068)}px Montserrat,sans-serif`;ctx.fillStyle=`rgba(201,169,110,${.62*prog})`;ctx.fillText(label.toUpperCase(),x+9,y+3.5);
+    });
+  }
+  let started=false,t0=null;
+  function loop(ts){if(!t0)t0=ts;draw(1-Math.pow(1-Math.min((ts-t0)/1400,1),3));requestAnimationFrame(loop)}
+  const mio=new IntersectionObserver(en=>{if(en[0].isIntersecting&&!started){started=true;requestAnimationFrame(loop);mio.disconnect()}},{threshold:.1});
+  mio.observe(cv);
+  window.addEventListener('resize',()=>{d=init();ctx.setTransform(1,0,0,1,0,0);ctx.scale(dpr,dpr)},{passive:true});
+})();
+</script>
 </body>
 </html>
