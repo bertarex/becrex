@@ -1,209 +1,233 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>BECREX — Strategic Advisory</title>
-  <link rel="stylesheet" href="style.css" />
-  <link rel="preconnect" href="https://fonts.googleapis.com" />
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet" />
-</head>
-<body>
+/* NAV scroll */
+(function () {
+  const nav = document.getElementById('navbar');
+  window.addEventListener('scroll', () => {
+    nav.classList.toggle('scrolled', window.scrollY > 40);
+  }, { passive: true });
+})();
 
-  <nav id="navbar">
-    <div class="nav-logo">BECREX</div>
-    <ul class="nav-links">
-      <li><a href="#about">About</a></li>
-      <li><a href="#value">Value</a></li>
-      <li><a href="#people">People</a></li>
-      <li><a href="#team">Team</a></li>
-      <li><a href="#contact">Contact</a></li>
-    </ul>
-    <div class="nav-lang">ES</div>
-    <button class="nav-toggle" aria-label="Menu">
-      <span></span><span></span>
-    </button>
-  </nav>
+/* Mobile menu */
+(function () {
+  const toggle = document.querySelector('.nav-toggle');
+  const menu   = document.getElementById('mobileMenu');
+  const links  = document.querySelectorAll('.mobile-link');
+  let open = false;
 
-  <div class="mobile-menu" id="mobileMenu">
-    <a href="#about" class="mobile-link">About</a>
-    <a href="#value" class="mobile-link">Value</a>
-    <a href="#people" class="mobile-link">People</a>
-    <a href="#team" class="mobile-link">Team</a>
-    <a href="#contact" class="mobile-link">Contact</a>
-  </div>
+  function setOpen(state) {
+    open = state;
+    menu.classList.toggle('open', open);
+    const spans = toggle.querySelectorAll('span');
+    if (open) {
+      spans[0].style.transform = 'translateY(6px) rotate(45deg)';
+      spans[1].style.transform = 'translateY(-6px) rotate(-45deg)';
+    } else {
+      spans[0].style.transform = '';
+      spans[1].style.transform = '';
+    }
+  }
 
-  <section id="hero">
-    <div class="hero-bg">
-      <div class="hero-grain"></div>
-      <div class="hero-lines"></div>
-    </div>
-    <div class="hero-content">
-      <div class="hero-eyebrow reveal">Strategic Advisory</div>
-      <h1 class="hero-title reveal">
-        <span>DEEP</span>
-        <span class="italic">EXPERTISE</span>
-      </h1>
-      <div class="hero-divider reveal"></div>
-      <p class="hero-sub reveal">
-        Across industries, investors, owners, and management teams face<br class="br-desk"/>
-        increasing complexity. We help clients cut through with clarity and precision.
-      </p>
-      <a href="#about" class="hero-cta reveal">
-        <span>Discover</span>
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
-      </a>
-    </div>
-    <div class="hero-scroll-hint">
-      <div class="scroll-line"></div>
-    </div>
-  </section>
+  toggle.addEventListener('click', () => setOpen(!open));
+  links.forEach(l => l.addEventListener('click', () => setOpen(false)));
+})();
 
-  <section id="about">
-    <div class="section-inner">
-      <div class="section-label reveal">01 — About Us</div>
-      <div class="about-grid">
-        <div class="about-text reveal">
-          <h2>BECREX advises investors, owners, and management teams facing complex situations, consequential decisions, and moments where clarity matters.</h2>
-          <p>We combine deep expertise, strategic judgment, and practical execution to help clients move from complexity to action.</p>
-        </div>
-        <div class="about-stat-col reveal">
-          <div class="stat-block">
-            <div class="stat-num" data-target="25">0</div>
-            <div class="stat-label">Years of experience</div>
-          </div>
-          <div class="stat-block">
-            <div class="stat-num" data-target="2">0</div>
-            <div class="stat-label">bn credit portfolio managed</div>
-          </div>
-          <div class="stat-block">
-            <div class="stat-num" data-target="2">0</div>
-            <div class="stat-label">Markets — Mexico & Spain</div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+/* Scroll reveal */
+(function () {
+  const items = document.querySelectorAll('.reveal');
+  const io = new IntersectionObserver((entries) => {
+    entries.forEach((e) => {
+      if (e.isIntersecting) {
+        const siblings = Array.from(e.target.parentElement.querySelectorAll('.reveal:not(.visible)'));
+        const idx = siblings.indexOf(e.target);
+        setTimeout(() => e.target.classList.add('visible'), idx * 90);
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.12 });
+  items.forEach(el => io.observe(el));
+})();
 
-  <section id="value">
-    <div class="section-inner">
-      <div class="section-label reveal">02 — Value</div>
-      <div class="value-grid">
-        <div class="value-card reveal">
-          <div class="value-num">I</div>
-          <h3>Performance Improvement</h3>
-          <p>We identify practical levers to improve operating performance, strengthen resilience, and unlock value across the asset base.</p>
-          <div class="value-line"></div>
-        </div>
-        <div class="value-card reveal">
-          <div class="value-num">II</div>
-          <h3>Capital Structure Optimization</h3>
-          <p>We help evaluate capital alternatives with discipline, clarity, and long-term perspective—always aligned with shareholder objectives.</p>
-          <div class="value-line"></div>
-        </div>
-        <div class="value-card reveal">
-          <div class="value-num">III</div>
-          <h3>Strategic Roadmaps</h3>
-          <p>We translate complexity into sensible, actionable plans aligned with the full potential of each asset and each market context.</p>
-          <div class="value-line"></div>
-        </div>
-      </div>
-    </div>
-  </section>
+/* Animated counters */
+(function () {
+  function animateCounter(el, target, suffix) {
+    const start = performance.now();
+    const duration = 1600;
+    const ease = t => t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t;
+    function tick(now) {
+      const p = Math.min((now - start) / duration, 1);
+      el.textContent = Math.round(ease(p) * target) + (suffix || '');
+      if (p < 1) requestAnimationFrame(tick);
+      else el.textContent = target + (suffix || '');
+    }
+    requestAnimationFrame(tick);
+  }
 
-  <section id="people">
-    <div class="section-inner">
-      <div class="section-label reveal">03 — People</div>
-      <div class="people-layout">
-        <div class="people-quote reveal">
-          <blockquote>
-            Every engagement is led with senior attention, discretion, and a direct understanding of what is at stake.
-          </blockquote>
-        </div>
-        <div class="people-text reveal">
-          <p>We stay close to the people, the asset, and the decision-making process — from diagnosis to execution. No hand-offs. No dilution of expertise.</p>
-        </div>
-      </div>
-    </div>
-  </section>
+  const statNums = document.querySelectorAll('.stat-num');
+  const io = new IntersectionObserver(entries => {
+    entries.forEach(e => {
+      if (e.isIntersecting && !e.target.dataset.animated) {
+        e.target.dataset.animated = '1';
+        const target = parseInt(e.target.dataset.target, 10);
+        const suffix = target === 25 ? '+' : '';
+        animateCounter(e.target, target, suffix);
+        io.unobserve(e.target);
+      }
+    });
+  }, { threshold: 0.5 });
+  statNums.forEach(el => io.observe(el));
+})();
 
-  <section id="team">
-    <div class="section-inner">
-      <div class="section-label reveal">04 — Team</div>
-      <div class="team-layout">
-        <div class="team-card reveal">
-          <div class="team-header">
-            <div class="team-initials">DR</div>
-            <div class="team-title-block">
-              <div class="team-role">Founder</div>
-              <h2 class="team-name">Domingo Rex</h2>
-            </div>
-          </div>
-          <div class="team-bio">
-            <p>Senior financial advisor and strategic practitioner with over 25 years of experience across banking, credit, and investment advisory in Europe and Latin America. He has advised financial institutions, funds, and corporate clients on complex transactions, particularly within the hospitality, real estate, and special situations sectors.</p>
-            <p>Previously, Domingo held senior roles at Banco CAM, including Managing Director and Country Head in Mexico, where he managed a tourism-focused credit portfolio of nearly $2 billion. He also advised major Spanish banks such as CaixaBank and Bankia during their strategic divestments in Mexico, accelerating execution while preserving shareholder value.</p>
-            <p>His advisory experience includes supporting private investors such as Rodina, guiding and executing its initial hospitality investments, as well as assisting banks and institutional clients in tourism and real estate transactions across Mexico and the Caribbean.</p>
-          </div>
-          <div class="team-tags">
-            <span>Banking</span>
-            <span>Credit Advisory</span>
-            <span>Real Estate</span>
-            <span>Hospitality</span>
-            <span>Special Situations</span>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+/* Footer year */
+document.getElementById('year').textContent = new Date().getFullYear();
 
-  <section id="presence">
-    <div class="section-inner">
-      <div class="section-label reveal">05 — Presence</div>
-      <div class="presence-text reveal">
-        <p>Operating across Mexico and Spain, supporting investors,<br class="br-desk"/> owners and management teams on both sides of the Atlantic.</p>
-      </div>
-      <div class="map-container reveal">
-        <canvas id="worldMap"></canvas>
-        <div class="map-legend">
-          <div class="legend-item"><span class="legend-dot"></span>Mexico City</div>
-          <div class="legend-item"><span class="legend-dot"></span>Madrid</div>
-        </div>
-      </div>
-    </div>
-  </section>
+/* World Map Canvas */
+(function () {
+  const canvas = document.getElementById('worldMap');
+  if (!canvas) return;
 
-  <section id="contact">
-    <div class="section-inner">
-      <div class="contact-layout">
-        <div class="contact-left reveal">
-          <div class="section-label">Contact</div>
-          <h2>Most important decisions don't come with perfect information.<br/><em>That's usually where the conversation starts.</em></h2>
-        </div>
-        <div class="contact-right reveal">
-          <a href="mailto:domingo@becrex.com" class="contact-email">domingo@becrex.com</a>
-          <div class="contact-locations">
-            <div class="contact-loc">
-              <div class="loc-dot"></div>
-              <div><div class="loc-city">Mexico</div></div>
-            </div>
-            <div class="contact-loc">
-              <div class="loc-dot"></div>
-              <div><div class="loc-city">Spain</div></div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+  const dpr = Math.min(window.devicePixelRatio || 1, 2);
+  const W_CSS = canvas.offsetWidth || 1100;
+  const H_CSS = Math.round(W_CSS * 0.48);
+  canvas.style.height = H_CSS + 'px';
+  canvas.width  = W_CSS * dpr;
+  canvas.height = H_CSS * dpr;
 
-  <footer>
-    <div class="footer-inner">
-      <div class="footer-logo">BECREX</div>
-      <div class="footer-copy">Mexico & Spain · <span id="year"></span></div>
-    </div>
-  </footer>
+  const ctx = canvas.getContext('2d');
+  ctx.scale(dpr, dpr);
+  const W = W_CSS, H = H_CSS;
 
-  <script src="script.js"></script>
-</body>
-</html>
+  function lon2x(lon) { return (lon + 180) / 360 * W; }
+  function lat2y(lat) {
+    const rad = lat * Math.PI / 180;
+    const merc = Math.log(Math.tan(Math.PI / 4 + rad / 2));
+    return H / 2 - merc * H / (2 * Math.PI) * 1.4 + H * 0.06;
+  }
+
+  const continents = [
+    // NORTH AMERICA
+    [[-168,71],[-141,61],[-130,55],[-125,49],[-120,34],[-117,28],[-105,20],[-87,16],
+     [-83,10],[-78,8],[-75,10],[-65,18],[-62,16],[-59,13],[-63,10],[-75,12],
+     [-82,9],[-87,16],[-90,15],[-92,18],[-85,23],[-80,25],[-81,30],[-75,35],
+     [-70,43],[-65,44],[-55,47],[-53,54],[-60,58],[-65,62],[-68,68],[-80,73],
+     [-95,76],[-110,75],[-130,71],[-148,71],[-168,71]],
+    // GREENLAND
+    [[-45,61],[-42,65],[-18,76],[-18,83],[-40,84],[-58,83],[-73,77],[-73,70],[-55,60],[-45,61]],
+    // SOUTH AMERICA
+    [[-80,8],[-77,3],[-70,-2],[-50,-2],[-35,-5],[-35,-10],[-40,-20],[-45,-23],[-48,-28],
+     [-52,-33],[-58,-38],[-62,-41],[-65,-46],[-66,-52],[-68,-56],[-63,-55],[-58,-52],
+     [-55,-46],[-50,-29],[-48,-20],[-40,-10],[-36,-3],[-40,3],[-52,5],[-60,5],[-67,8],
+     [-77,8],[-80,8]],
+    // EUROPE
+    [[-10,36],[0,36],[5,36],[5,43],[0,43],[-5,44],[-2,48],[3,50],[8,53],[10,57],
+     [16,58],[22,60],[25,65],[28,70],[20,70],[16,70],[14,58],[10,57],[5,53],[0,50],
+     [5,47],[8,44],[3,44],[0,43],[-5,44],[-7,38],[-10,37],[-10,36]],
+    // IBERIAN
+    [[-9,37],[-7,37],[-5,36],[0,36],[3,42],[-2,44],[-7,44],[-9,39],[-9,37]],
+    // BRITISH ISLES
+    [[-5,50],[-2,50],[2,51],[-1,53],[-3,56],[-5,58],[-7,55],[-5,52],[-5,50]],
+    // SCANDINAVIA
+    [[4,57],[6,57],[8,58],[8,62],[14,64],[18,68],[26,70],[28,72],[20,74],[15,70],[14,65],[8,62],[5,57],[4,57]],
+    // AFRICA
+    [[-6,34],[0,30],[10,30],[25,30],[32,30],[37,22],[44,12],[50,12],[44,5],[38,-2],
+     [35,-5],[35,-12],[32,-18],[28,-22],[32,-26],[28,-30],[18,-34],[14,-34],[14,-28],
+     [10,-22],[8,-10],[2,-2],[0,4],[2,6],[10,6],[14,12],[10,16],[2,24],[-6,30],
+     [-8,28],[-12,20],[-12,14],[-8,12],[-15,12],[-18,15],[-18,24],[-14,28],[-6,34]],
+    // ASIA
+    [[26,70],[30,73],[50,75],[80,76],[100,73],[120,72],[140,72],[160,68],
+     [163,60],[155,55],[145,44],[135,35],[125,25],[120,20],[110,18],[105,10],
+     [100,4],[95,5],[90,20],[80,24],[70,22],[62,22],[58,24],[55,30],[45,30],
+     [40,35],[35,36],[30,36],[26,42],[28,46],[30,50],[36,54],[40,60],[50,66],
+     [60,70],[70,72],[80,74],[100,73]],
+    // INDIA
+    [[68,22],[72,20],[76,8],[80,8],[84,14],[80,20],[74,24],[68,24],[68,22]],
+    // JAPAN
+    [[130,31],[132,33],[132,35],[136,36],[137,35],[136,33],[132,31],[130,31]],
+    // AUSTRALIA
+    [[114,-22],[116,-20],[122,-18],[128,-14],[130,-12],[135,-12],[136,-14],
+     [138,-18],[140,-18],[142,-12],[148,-20],[152,-24],[154,-28],[152,-32],
+     [148,-38],[144,-38],[138,-36],[132,-34],[126,-34],[118,-30],[114,-26],[114,-22]],
+    // NEW ZEALAND
+    [[170,-36],[172,-36],[174,-38],[172,-40],[170,-38],[170,-36]],
+  ];
+
+  function draw(progress) {
+    ctx.clearRect(0, 0, W, H);
+    ctx.fillStyle = '#161614';
+    ctx.fillRect(0, 0, W, H);
+
+    // Grid
+    ctx.strokeStyle = 'rgba(255,255,255,0.03)';
+    ctx.lineWidth = 0.5;
+    for (let lat = -80; lat <= 80; lat += 30) {
+      ctx.beginPath(); ctx.moveTo(0, lat2y(lat)); ctx.lineTo(W, lat2y(lat)); ctx.stroke();
+    }
+    for (let lon = -180; lon <= 180; lon += 60) {
+      ctx.beginPath(); ctx.moveTo(lon2x(lon), 0); ctx.lineTo(lon2x(lon), H); ctx.stroke();
+    }
+
+    // Continents
+    continents.forEach(shape => {
+      ctx.beginPath();
+      shape.forEach(([lon, lat], i) => {
+        const x = lon2x(lon), y = lat2y(lat);
+        i === 0 ? ctx.moveTo(x, y) : ctx.lineTo(x, y);
+      });
+      ctx.closePath();
+      ctx.fillStyle = 'rgba(201,169,110,0.06)';
+      ctx.fill();
+      ctx.strokeStyle = 'rgba(201,169,110,0.35)';
+      ctx.lineWidth = 0.8;
+      ctx.stroke();
+    });
+
+    // Pins
+    const pins = [
+      { lon: -99.1, lat: 19.4, label: 'Mexico City' },
+      { lon: -3.7,  lat: 40.4, label: 'Madrid' },
+    ];
+
+    pins.forEach(({ lon, lat, label }) => {
+      const x = lon2x(lon), y = lat2y(lat);
+      const pulse = (Date.now() % 2400) / 2400;
+      const r = 6 + pulse * 18;
+      const a = (1 - pulse) * 0.4 * progress;
+
+      ctx.beginPath(); ctx.arc(x, y, r, 0, Math.PI * 2);
+      ctx.strokeStyle = `rgba(201,169,110,${a})`; ctx.lineWidth = 1; ctx.stroke();
+
+      ctx.beginPath(); ctx.arc(x, y, 7, 0, Math.PI * 2);
+      ctx.strokeStyle = `rgba(201,169,110,${0.5 * progress})`; ctx.lineWidth = 1; ctx.stroke();
+
+      ctx.beginPath(); ctx.arc(x, y, 3.5, 0, Math.PI * 2);
+      ctx.fillStyle = `rgba(201,169,110,${progress})`; ctx.fill();
+
+      ctx.font = '400 9px Montserrat, sans-serif';
+      ctx.fillStyle = `rgba(201,169,110,${0.7 * progress})`;
+      ctx.fillText(label.toUpperCase(), x + 11, y + 4);
+    });
+  }
+
+  let startTime = null;
+  const ENTRANCE = 1200;
+
+  function loop(ts) {
+    if (!startTime) startTime = ts;
+    const p = Math.min((ts - startTime) / ENTRANCE, 1);
+    const ease = 1 - Math.pow(1 - p, 3);
+    draw(ease);
+    requestAnimationFrame(loop);
+  }
+
+  const io = new IntersectionObserver(entries => {
+    if (entries[0].isIntersecting) { requestAnimationFrame(loop); io.disconnect(); }
+  }, { threshold: 0.2 });
+  io.observe(canvas);
+
+  window.addEventListener('resize', () => {
+    const nW = canvas.offsetWidth;
+    const nH = Math.round(nW * 0.48);
+    canvas.style.height = nH + 'px';
+    canvas.width  = nW * dpr;
+    canvas.height = nH * dpr;
+    ctx.scale(dpr, dpr);
+  }, { passive: true });
+})();
