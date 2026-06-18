@@ -3,239 +3,221 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-
-  <title>BECREX | Independent Advisory</title>
-
-  <meta name="description" content="Independent advisory for investors, owners and management teams navigating complex transactions, special situations and strategic decisions." />
-
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-
-  <link rel="stylesheet" href="styles.css" />
+  <title>BECREX — Strategic Advisory</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
 </head>
-
 <body>
 
-<header class="navbar" id="navbar">
-  <a href="#home" class="brand">
-    <span>BECREX</span>
-    <small>Independent Advisory</small>
-  </a>
-
-  <nav class="nav-links">
-    <a href="#about">About Us</a>
-    <a href="#what-we-do">What We Do</a>
-    <a href="#people">People</a>
-    <a href="#experience">Experience</a>
-    <a href="#presence">Presence</a>
-    <a href="#contact">Contact</a>
+  <!-- NAV -->
+  <nav id="nav">
+    <div class="nlogo">BECREX</div>
+    <ul class="nlinks">
+      <li><a href="#about"    data-i18n="nav.about">About</a></li>
+      <li><a href="#value"    data-i18n="nav.value">Value</a></li>
+      <li><a href="#who"      data-i18n="nav.who">Who We Work With</a></li>
+      <li><a href="#people"   data-i18n="nav.people">People</a></li>
+      <li><a href="#contact"  data-i18n="nav.contact">Contact</a></li>
+    </ul>
+    <div class="lang-toggle">
+      <button class="lang-btn active" data-lang="en">EN</button>
+      <div class="lang-sep"></div>
+      <button class="lang-btn" data-lang="es">ES</button>
+    </div>
+    <button class="nbtn" aria-label="Menu"><span></span><span></span></button>
   </nav>
 
-  <button class="nav-toggle" aria-label="Open menu">
-    <span></span>
-    <span></span>
-  </button>
-</header>
-
-<div class="mobile-menu" id="mobileMenu">
-  <a class="mobile-link" href="#about">About Us</a>
-  <a class="mobile-link" href="#what-we-do">What We Do</a>
-  <a class="mobile-link" href="#people">People</a>
-  <a class="mobile-link" href="#experience">Experience</a>
-  <a class="mobile-link" href="#presence">Presence</a>
-  <a class="mobile-link" href="#contact">Contact</a>
-</div>
-
-<main>
-
-<section id="home" class="hero">
-  <div class="hero-inner reveal">
-    <p class="eyebrow">Deep Expertise</p>
-
-    <h1>Strategic Insight</h1>
-
-    <div class="hero-text">
-      <p>
-        Across industries, investors, owners, and management teams face increasing complexity—evolving customer expectations, rising operational pressures, volatile capital markets, and a dynamic competitive landscape.
-      </p>
-
-      <p>
-        We help clients cut through that complexity with clarity and precision.
-      </p>
-
-      <p>
-        Our high-impact advisory empowers better strategic decisions — creating real value through performance improvement, capital structure optimization, and sensible, actionable roadmaps that strengthen long-term resilience and unlock the full potential of each asset.
-      </p>
+  <!-- MOBILE MENU -->
+  <div id="mmenu">
+    <a href="#about"   class="mlink" data-i18n="nav.about">About</a>
+    <a href="#value"   class="mlink" data-i18n="nav.value">Value</a>
+    <a href="#who"     class="mlink" data-i18n="nav.who">Who We Work With</a>
+    <a href="#people"  class="mlink" data-i18n="nav.people">People</a>
+    <a href="#contact" class="mlink" data-i18n="nav.contact">Contact</a>
+    <div class="mlang">
+      <button class="mlang-btn active" data-lang="en">EN</button>
+      <button class="mlang-btn" data-lang="es">ES</button>
     </div>
   </div>
-</section>
 
-<section id="about" class="section">
-  <div class="container narrow reveal">
-    <p class="eyebrow">About Us</p>
-
-    <h2>Independent advice for complex decisions.</h2>
-
-    <p>
-      BECREX advises investors, owners, and management teams facing complex situations, consequential decisions, and moments where clarity matters.
-    </p>
-
-    <p>
-      We combine financial expertise, strategic judgment, and practical execution to help clients move from uncertainty to action.
-    </p>
-  </div>
-</section>
-
-<section id="what-we-do" class="section">
-  <div class="container reveal">
-    <p class="eyebrow">What We Do</p>
-
-    <div class="cards">
-      <article class="card reveal">
-        <h3>Strategic Advisory</h3>
-        <p>
-          Clear analysis and judgment for decisions involving growth, capital, risk, ownership, and long-term value.
-        </p>
-      </article>
-
-      <article class="card reveal">
-        <h3>Complex Transactions</h3>
-        <p>
-          Support in evaluating, structuring, negotiating, and executing transactions where timing, alignment, and discipline matter.
-        </p>
-      </article>
-
-      <article class="card reveal">
-        <h3>Special Situations</h3>
-        <p>
-          Advisory for assets, companies, and stakeholders navigating pressure, complexity, transition, or constrained alternatives.
-        </p>
-      </article>
-
-      <article class="card reveal">
-        <h3>Capital Structure</h3>
-        <p>
-          Evaluation of financing alternatives, debt capacity, restructuring options, and capital allocation priorities.
-        </p>
-      </article>
-
-      <article class="card reveal">
-        <h3>Hospitality & Real Estate</h3>
-        <p>
-          Sector insight across tourism, hotels, real estate, and operating assets in Europe, Mexico, and the Caribbean.
-        </p>
-      </article>
-
-      <article class="card reveal">
-        <h3>Actionable Roadmaps</h3>
-        <p>
-          Practical plans that translate complexity into sequenced decisions, measurable actions, and accountable execution.
-        </p>
-      </article>
+  <!-- HERO -->
+  <section id="hero">
+    <div class="hbg"><div class="hgrid"></div></div>
+    <div class="hcontent">
+      <div class="hey r" data-i18n="hero.eyebrow">Strategic Advisory · Mexico &amp; Spain</div>
+      <h1 class="htitle r">BECREX</h1>
+      <div class="hdiv r"></div>
+      <p class="hsub r" data-i18n="hero.sub">We advise investors, owners, and management teams on complex decisions — combining deep expertise with practical execution.</p>
+      <a href="#about" class="hcta r">
+        <span data-i18n="hero.cta">Learn more</span>
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+          <path d="M12 5v14M5 12l7 7 7-7"/>
+        </svg>
+      </a>
     </div>
-  </div>
-</section>
+    <div class="hscroll"><div class="hscroll-line"></div></div>
+  </section>
 
-<section id="people" class="section">
-  <div class="container people-grid reveal">
-    <div>
-      <p class="eyebrow">People</p>
-      <h2>Domingo Rex</h2>
-      <p class="role">Founder</p>
-    </div>
-
-    <div class="bio">
-      <p>
-        Senior financial advisor and strategic practitioner with over 25 years of experience across banking, credit, and investment advisory in Europe and Latin America.
-      </p>
-
-      <p>
-        He has advised financial institutions, funds, and corporate clients on complex transactions, particularly within the hospitality, real estate, and special situations sectors.
-      </p>
-
-      <p>
-        Previously, Domingo held senior roles at Banco CAM, including Managing Director and Country Head in Mexico, where he managed a tourism-focused credit portfolio of nearly $2 billion.
-      </p>
-
-      <p>
-        He also advised major Spanish banks such as CaixaBank and Bankia during their strategic divestments in Mexico, accelerating execution while preserving shareholder value.
-      </p>
-
-      <p>
-        Domingo partners with investors, institutions, and operators to assess opportunities, structure complex deals, and create lasting value across evolving markets.
-      </p>
-    </div>
-  </div>
-</section>
-
-<section id="experience" class="section">
-  <div class="container reveal">
-    <p class="eyebrow">Selected Experience</p>
-
-    <div class="experience-list">
-      <div class="experience-item reveal">
-        <span>01</span>
-        <p>Tourism-focused credit portfolio of nearly $2 billion.</p>
-      </div>
-
-      <div class="experience-item reveal">
-        <span>02</span>
-        <p>Advisory on strategic bank divestments in Mexico.</p>
-      </div>
-
-      <div class="experience-item reveal">
-        <span>03</span>
-        <p>Hospitality investments across Mexico and the Caribbean.</p>
-      </div>
-
-      <div class="experience-item reveal">
-        <span>04</span>
-        <p>Complex real estate and special situations transactions.</p>
-      </div>
-
-      <div class="experience-item reveal">
-        <span>05</span>
-        <p>Capital structure and transaction advisory for investors, institutions, and operators.</p>
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="si">
+      <div class="slabel r" data-i18n="about.label">01 — About</div>
+      <div class="agrid">
+        <div class="atext r">
+          <h2 data-i18n="about.h2">We advise investors, owners, and management teams facing complex situations, consequential decisions, and moments where clarity matters.</h2>
+          <p data-i18n="about.p1">We combine deep expertise, strategic judgment, and practical execution to help clients move from complexity to action.</p>
+          <p data-i18n="about.p2">We understand the weight of strategic decisions because we have made them. That experience shapes how we think, how we advise, and how we stay close to what matters. Every engagement is led by us — discreetly, directly, and with purpose.</p>
+        </div>
+        <div class="astats r">
+          <div class="astat">
+            <div class="anum" data-target="25">0</div>
+            <div class="alabel" data-i18n="about.stat1">Years of experience</div>
+          </div>
+          <div class="astat">
+            <div class="anum" data-target="2" data-suffix="bn">0</div>
+            <div class="alabel" data-i18n="about.stat2">Credit portfolio managed</div>
+          </div>
+          <div class="astat">
+            <div class="anum" data-target="2">0</div>
+            <div class="alabel" data-i18n="about.stat3">Markets — Mexico &amp; Spain</div>
+          </div>
+        </div>
       </div>
     </div>
-  </div>
-</section>
+  </section>
 
-<section id="presence" class="section">
-  <div class="container reveal">
-    <p class="eyebrow">Presence</p>
-
-    <div class="map-shell">
-      <canvas id="worldMap"></canvas>
+  <!-- VALUE -->
+  <section id="value">
+    <div class="si">
+      <div class="slabel r" data-i18n="value.label">02 — Where We Create Value</div>
+      <div class="vgrid">
+        <div class="vcard r">
+          <div class="vtitle" data-i18n="value.t1">Investment Strategy</div>
+          <p data-i18n="value.p1">Helping guide capital deployment, divestment, and repositioning decisions — grounded in asset-level insight, market intelligence, and strategic support throughout critical negotiations.</p>
+          <div class="vline"></div>
+        </div>
+        <div class="vcard r">
+          <div class="vtitle" data-i18n="value.t2">Capital Structure</div>
+          <p data-i18n="value.p2">Structuring financial architecture that enhances resilience, preserves flexibility, and maximizes value across the capital stack.</p>
+          <div class="vline"></div>
+        </div>
+        <div class="vcard r">
+          <div class="vtitle" data-i18n="value.t3">Strategic Alignment</div>
+          <p data-i18n="value.p3">Providing senior-level guidance to align stakeholders and support value creation when strategic repositioning or renewed focus is required.</p>
+          <div class="vline"></div>
+        </div>
+        <div class="vcard r">
+          <div class="vtitle" data-i18n="value.t4">Asset Performance</div>
+          <p data-i18n="value.p4">Enhancing portfolio asset performance across the investment lifecycle — aligning profitability with long-term strategic goals and value-creation plans.</p>
+          <div class="vline"></div>
+        </div>
+      </div>
     </div>
+  </section>
 
-    <p class="presence-text">
-      Operating across Madrid and Mexico City, supporting investors, owners and management teams on both sides of the Atlantic.
-    </p>
-  </div>
-</section>
-
-<section id="contact" class="contact">
-  <div class="container reveal">
-    <p class="eyebrow light">Contact</p>
-
-    <h2>For complex decisions, the first conversation is usually the most important.</h2>
-
-    <div class="contact-links">
-      <a href="mailto:domingo@becrex.com">domingo@becrex.com</a>
-      <a href="https://www.linkedin.com/in/domingo-rex/" target="_blank" rel="noopener">LinkedIn →</a>
+  <!-- WHO WE WORK WITH -->
+  <section id="who">
+    <div class="si">
+      <div class="slabel r" data-i18n="who.label">03 — Who We Work With</div>
+      <div class="wgrid">
+        <div class="wblock r">
+          <div class="wblock-tag" data-i18n="who.t1">Investors &amp; Credit Providers</div>
+          <p data-i18n="who.p1">We advise institutional investors, family offices, and credit providers on strategic exposure across target sectors — from underwriting and target selection to capital structuring, management alignment, and portfolio management. Whether equity or debt, our work focuses on protecting downside, identifying upside, and ensuring strategic clarity across every decision and transaction.</p>
+        </div>
+        <div class="wblock r">
+          <div class="wblock-tag" data-i18n="who.t2">Asset Owners &amp; Boards</div>
+          <p data-i18n="who.p2">We support asset owners and boards in enhancing long-term value, navigating complex decisions, and aligning stakeholders — from performance oversight to capital planning, repositioning strategy, and pre- and post-deal execution.</p>
+        </div>
+      </div>
     </div>
-  </div>
-</section>
+  </section>
 
-</main>
+  <!-- PEOPLE -->
+  <section id="people">
+    <div class="si">
+      <div class="slabel r" data-i18n="people.label">04 — People</div>
+      <div class="pgrid">
+        <div class="r">
+          <div class="pquote" data-i18n="people.quote">Every engagement is led with senior attention, discretion, and a direct understanding of what is at stake.</div>
+          <p class="psub" data-i18n="people.sub">We stay close to the people, the asset, and the decision-making process — from diagnosis to execution. No hand-offs. No dilution of expertise.</p>
+        </div>
+        <div class="fcard r">
+          <div class="fc-head">
+            <div class="fc-init">DR</div>
+            <div>
+              <div class="fc-role" data-i18n="people.role">Founder</div>
+              <div class="fc-name">Domingo Rex</div>
+            </div>
+          </div>
+          <div class="fc-bio">
+            <p data-i18n="people.bio1">Senior financial advisor and strategic practitioner with over 25 years of experience across banking, credit, and investment advisory in Europe and Latin America, with a focus on complex transactions in hospitality, real estate, and special situations.</p>
+            <p data-i18n="people.bio2">Previously held senior roles at Banco CAM, including Managing Director and Country Head in Mexico, managing a tourism-focused credit portfolio of nearly $2 billion. Advised CaixaBank and Bankia during their strategic divestments in Mexico, accelerating execution while preserving shareholder value.</p>
+            <p data-i18n="people.bio3">Known for technical expertise, regional insight, and consistent delivery across investors, institutions, and operators on both sides of the Atlantic.</p>
+          </div>
+          <div class="fc-tags">
+            <span>Banking</span>
+            <span>Credit Advisory</span>
+            <span>Real Estate</span>
+            <span>Hospitality</span>
+            <span>Special Situations</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-<footer class="footer">
-  <p>BECREX · <span id="year"></span></p>
-</footer>
+  <!-- PRESENCE -->
+  <section id="presence">
+    <div class="si">
+      <div class="slabel r" data-i18n="presence.label">05 — Presence</div>
+      <div class="prestext r">
+        <p data-i18n="presence.text">Operating across Mexico and Spain, supporting investors, owners and management teams on both sides of the Atlantic.</p>
+      </div>
+      <div class="mapwrap r">
+        <canvas id="wmap"></canvas>
+        <div class="mapleg">
+          <div class="legitem"><span class="legdot"></span>Mexico City</div>
+          <div class="legitem"><span class="legdot"></span>Madrid</div>
+        </div>
+      </div>
+    </div>
+  </section>
 
-<script src="script.js"></script>
+  <!-- CONTACT -->
+  <section id="contact">
+    <div class="si">
+      <div class="clayout">
+        <div class="cleft r">
+          <div class="slabel" data-i18n="nav.contact">Contact</div>
+          <h2 data-i18n="contact.h2">Get in touch</h2>
+        </div>
+        <div class="r">
+          <a href="mailto:domingo@becrex.com" class="cemail">domingo@becrex.com</a>
+          <div class="clocs">
+            <div class="cloc">
+              <div class="locdot"></div>
+              <div class="loccity" data-i18n="contact.loc1">Mexico</div>
+            </div>
+            <div class="cloc">
+              <div class="locdot"></div>
+              <div class="loccity" data-i18n="contact.loc2">Spain</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
+  <!-- FOOTER -->
+  <footer>
+    <div class="fi">
+      <div class="flogo">BECREX</div>
+      <div class="fcopy">Mexico &amp; Spain · <span id="yr"></span></div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
 </body>
 </html>
