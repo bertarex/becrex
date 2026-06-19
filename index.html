@@ -1,787 +1,223 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-<meta charset="UTF-8"/>
-<meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-<link rel="icon" type="image/png" href="favicon.png">
-<title>BECREX — Strategic Advisory</title>
-<link rel="preconnect" href="https://fonts.googleapis.com"/>
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;1,300;1,400&family=Montserrat:wght@300;400;500;600&display=swap" rel="stylesheet"/>
-<style>
-/* ── RESET & TOKENS — LIGHT / NAVY ── */
-:root{
-  --bg:       #ffffff;
-  --bg2:      #f7f8fa;
-  --surface:  #ffffff;
-  --surface2: #f2f4f7;
-  --border:   rgba(13,30,58,0.10);
-  --navy:     #0d1e3a;
-  --navy2:    #14305c;
-  --accent:   #1d4a8f;
-  --accent-dim: rgba(29,74,143,0.06);
-  --ink:      #14213a;
-  --muted:    rgba(20,33,58,0.56);
-  --mutedlt:  rgba(20,33,58,0.42);
-  --serif:    'Cormorant Garamond',Georgia,serif;
-  --sans:     'Montserrat',sans-serif;
-  --ease:     cubic-bezier(.25,.46,.45,.94);
-  --easeOut:  cubic-bezier(.16,1,.3,1);
-}
-*,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
-body{background:var(--bg);color:var(--muted);font-family:var(--sans);font-weight:300;line-height:1.75;overflow-x:hidden;-webkit-font-smoothing:antialiased}
-::-webkit-scrollbar{width:2px}
-::-webkit-scrollbar-track{background:var(--bg)}
-::-webkit-scrollbar-thumb{background:var(--navy2)}
-::selection{background:var(--navy2);color:#fff}
-
-/* ── NAV ── */
-#nav{
-  position:fixed;top:0;left:0;right:0;z-index:200;
-  display:flex;align-items:center;justify-content:space-between;
-  padding:0 5vw;height:70px;
-  background:rgba(255,255,255,.86);
-  backdrop-filter:blur(14px);-webkit-backdrop-filter:blur(14px);
-  border-bottom:1px solid transparent;
-  transition:background .5s,border-color .5s,box-shadow .5s;
-}
-#nav.s{
-  background:rgba(255,255,255,.97);
-  border-color:var(--border);
-  box-shadow:0 1px 24px rgba(13,30,58,.05);
-}
-.nlogo{
-  font-family:var(--sans);font-weight:600;font-size:.9rem;
-  letter-spacing:.32em;color:var(--navy);
-}
-.nlinks{display:flex;gap:2rem;list-style:none}
-.nlinks a{
-  font-size:.58rem;font-weight:500;letter-spacing:.2em;
-  text-transform:uppercase;color:var(--muted);text-decoration:none;
-  position:relative;transition:color .3s;
-}
-.nlinks a::after{
-  content:'';position:absolute;bottom:-2px;left:0;
-  width:0;height:1px;background:var(--accent);
-  transition:width .35s var(--ease);
-}
-.nlinks a:hover{color:var(--navy)}
-.nlinks a:hover::after{width:100%}
-
-/* lang */
-.lang-wrap{display:flex;align-items:stretch;border:1px solid var(--border);overflow:hidden}
-.lang-btn{
-  font-family:var(--sans);font-size:.56rem;font-weight:500;
-  letter-spacing:.2em;text-transform:uppercase;
-  color:var(--muted);background:none;border:none;cursor:pointer;
-  padding:.38rem .72rem;transition:background .3s,color .3s;
-}
-.lang-btn.active{background:var(--navy);color:#fff}
-.lang-btn:not(.active):hover{color:var(--navy)}
-.lang-sep{width:1px;background:var(--border)}
-
-.nbtn{display:none;flex-direction:column;gap:5px;background:none;border:none;cursor:pointer;padding:4px}
-.nbtn span{display:block;width:20px;height:1px;background:var(--navy);transition:transform .35s}
-
-/* mobile menu */
-#mmenu{
-  display:none;position:fixed;inset:0;z-index:199;
-  background:rgba(255,255,255,.98);backdrop-filter:blur(20px);
-  flex-direction:column;align-items:center;justify-content:center;gap:2.6rem;
-  opacity:0;pointer-events:none;transition:opacity .4s;
-}
-#mmenu.open{opacity:1;pointer-events:all}
-.mlink{
-  font-family:var(--serif);font-size:2.5rem;font-weight:300;
-  color:var(--navy);text-decoration:none;letter-spacing:.04em;transition:color .3s;
-}
-.mlink:hover{color:var(--accent)}
-.mlang{display:flex;gap:.8rem;margin-top:1.2rem}
-.mlang-btn{
-  font-family:var(--sans);font-size:.65rem;letter-spacing:.2em;
-  color:var(--muted);background:none;border:1px solid var(--border);
-  padding:.38rem .85rem;cursor:pointer;transition:background .3s,color .3s,border-color .3s;
-}
-.mlang-btn.active{background:var(--navy);color:#fff;border-color:var(--navy)}
-
-/* ── HERO ── */
-#hero{
-  position:relative;height:100vh;min-height:700px;
-  display:flex;align-items:center;justify-content:center;overflow:hidden;
-  background:var(--bg);
-}
-.hbg{
-  position:absolute;inset:0;
-  background:
-    radial-gradient(ellipse 75% 75% at 58% 32%,rgba(29,74,143,.045) 0%,transparent 58%),
-    radial-gradient(ellipse 50% 55% at 10% 82%,rgba(13,30,58,.03) 0%,transparent 55%),
-    var(--bg);
-}
-.hgrid{
-  position:absolute;inset:0;
-  background-image:
-    linear-gradient(90deg,rgba(13,30,58,.035) 1px,transparent 1px),
-    linear-gradient(rgba(13,30,58,.035) 1px,transparent 1px);
-  background-size:110px 110px;
-  -webkit-mask-image:radial-gradient(ellipse 70% 70% at 50% 40%,#000 30%,transparent 80%);
-  mask-image:radial-gradient(ellipse 70% 70% at 50% 40%,#000 30%,transparent 80%);
-}
-.hcontent{position:relative;z-index:2;text-align:center;padding:0 2rem}
-.hey{
-  font-size:.56rem;font-weight:500;letter-spacing:.44em;
-  text-transform:uppercase;color:var(--accent);margin-bottom:2.5rem;
-}
-.htitle{
-  font-family:var(--serif);
-  font-size:clamp(4.8rem,11vw,11rem);
-  font-weight:300;line-height:.86;color:var(--navy);
-  margin-bottom:3rem;
-}
-.hdiv{
-  width:1px;height:56px;
-  background:linear-gradient(to bottom,var(--accent),transparent);
-  margin:0 auto 3rem;
-}
-.hsub{
-  font-size:.8rem;font-weight:300;color:var(--muted);
-  letter-spacing:.02em;line-height:2;max-width:500px;
-  margin:0 auto 1.6rem;
-}
-.hcta{
-  display:inline-flex;align-items:center;gap:.75rem;
-  font-size:.57rem;font-weight:500;letter-spacing:.3em;
-  text-transform:uppercase;color:var(--navy);text-decoration:none;
-  transition:color .3s,gap .35s;
-}
-.hcta svg{width:14px;height:14px;transition:transform .4s var(--ease)}
-.hcta:hover{color:var(--accent);gap:1.2rem}
-.hcta:hover svg{transform:translateY(5px)}
-.hscroll{position:absolute;bottom:2.8rem;left:50%;transform:translateX(-50%)}
-.hscroll-line{
-  width:1px;height:54px;
-  background:linear-gradient(to bottom,transparent,var(--accent),transparent);
-  animation:pulse-scroll 2.4s ease-in-out infinite;
-}
-@keyframes pulse-scroll{
-  0%,100%{opacity:.18;transform:scaleY(.75)}
-  50%{opacity:1;transform:scaleY(1)}
-}
-
-/* ── REVEAL ── */
-.r{
-  opacity:0;transform:translateY(24px);
-  transition:opacity .95s var(--easeOut),transform .95s var(--easeOut);
-}
-.r.v{opacity:1;transform:none}
-
-/* ── SECTION BASE ── */
-section{padding:9rem 0}
-.si{max-width:1100px;margin:0 auto;padding:0 5vw}
-.slabel{
-  font-size:.54rem;font-weight:600;letter-spacing:.36em;
-  text-transform:uppercase;color:var(--accent);margin-bottom:4rem;
-}
-
-/* ── ABOUT ── */
-#about{background:var(--bg);border-top:1px solid var(--border)}
-.agrid{display:grid;grid-template-columns:1.15fr .85fr;gap:8rem;align-items:start}
-.atext h2{
-  font-family:var(--serif);
-  font-size:clamp(1.5rem,2.5vw,2.15rem);
-  font-weight:300;color:var(--navy);line-height:1.44;margin-bottom:1.8rem;
-}
-.atext p{font-size:.79rem;color:var(--muted);line-height:2;margin-bottom:1.1rem}
-.atext p:last-child{margin-bottom:0}
-.astats{display:flex;flex-direction:column;gap:2.8rem}
-.astat{border-left:1px solid var(--accent);padding-left:1.5rem}
-.anum{
-  font-family:var(--serif);font-size:3.1rem;font-weight:300;
-  color:var(--navy);line-height:1;margin-bottom:.3rem;
-}
-.alabel{font-size:.6rem;letter-spacing:.13em;color:var(--mutedlt);text-transform:uppercase}
-
-/* ── VALUE ── */
-#value{background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
-.vgrid{display:grid;grid-template-columns:repeat(2,1fr);gap:1px;background:var(--border)}
-.vcard{
-  background:var(--bg2);padding:3.4rem 2.8rem;
-  position:relative;overflow:hidden;cursor:default;
-}
-.vcard::before{
-  content:'';position:absolute;inset:0;
-  background:var(--accent-dim);opacity:0;transition:opacity .4s;
-}
-.vcard:hover::before{opacity:1}
-.vtitle{
-  font-family:var(--serif);font-size:1.32rem;font-weight:400;
-  color:var(--navy);line-height:1.3;margin-bottom:1.1rem;
-  position:relative;
-}
-.vcard p{font-size:.75rem;color:var(--muted);line-height:2;position:relative}
-.vline{
-  position:absolute;bottom:0;left:0;
-  height:2px;width:0;background:var(--accent);
-  transition:width .55s var(--ease);
-}
-.vcard:hover .vline{width:100%}
-
-/* ── WHO ── */
-#who{background:var(--bg);border-top:1px solid var(--border)}
-.wgrid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--border)}
-.wblock{
-  background:var(--bg);padding:3.8rem;
-  position:relative;overflow:hidden;
-}
-.wblock::before{
-  content:'';position:absolute;inset:0;
-  background:var(--accent-dim);opacity:0;transition:opacity .4s;
-}
-.wblock:hover::before{opacity:1}
-.wblock-tag{
-  font-size:.56rem;font-weight:600;letter-spacing:.3em;
-  text-transform:uppercase;color:var(--accent);margin-bottom:1.7rem;
-  position:relative;
-}
-.wblock p{font-size:.77rem;color:var(--muted);line-height:2;position:relative}
-
-/* ── PEOPLE ── */
-#people{background:var(--bg2);border-top:1px solid var(--border);border-bottom:1px solid var(--border)}
-.pgrid{display:grid;grid-template-columns:1fr 1fr;gap:8rem;align-items:start}
-.pquote{
-  font-family:var(--serif);
-  font-size:clamp(1.65rem,3vw,2.6rem);
-  font-weight:300;font-style:italic;color:var(--navy);
-  line-height:1.44;position:relative;padding-top:1.6rem;
-}
-.pquote::before{
-  content:'\201C';font-family:var(--serif);
-  font-size:7rem;color:var(--accent);opacity:.16;
-  position:absolute;top:-1.8rem;left:-.6rem;
-  line-height:1;font-style:normal;
-}
-.psub{
-  font-size:.77rem;color:var(--muted);line-height:2;
-  margin-top:2.2rem;border-left:1px solid var(--accent);padding-left:1.5rem;
-}
-
-/* founder card */
-.fcard{
-  background:#fff;border:1px solid var(--border);
-  padding:3rem;position:relative;
-  box-shadow:0 2px 32px rgba(13,30,58,.04);
-}
-.fcard::before{
-  content:'';position:absolute;top:0;left:0;
-  width:2px;height:100%;
-  background:linear-gradient(to bottom,var(--navy),transparent);
-}
-.fc-head{
-  display:flex;align-items:center;gap:1.7rem;
-  margin-bottom:2.2rem;padding-bottom:2.2rem;border-bottom:1px solid var(--border);
-}
-.fc-role{font-size:.54rem;font-weight:600;letter-spacing:.3em;text-transform:uppercase;color:var(--accent);margin-bottom:.38rem}
-.fc-name{font-family:var(--serif);font-size:1.7rem;font-weight:400;color:var(--navy);line-height:1}
-.fc-bio p{font-size:.75rem;color:var(--muted);line-height:2;margin-bottom:1rem}
-.fc-bio p:last-child{margin-bottom:0}
-.fc-links{display:flex;gap:1rem;margin-top:2rem;padding-top:2rem;border-top:1px solid var(--border)}
-.fc-link{
-  display:inline-flex;align-items:center;gap:.5rem;
-  font-size:.57rem;font-weight:500;letter-spacing:.16em;
-  text-transform:uppercase;color:var(--muted);text-decoration:none;
-  border:1px solid var(--border);padding:.38rem .9rem;
-  transition:border-color .3s,color .3s;
-}
-.fc-link:hover{border-color:var(--navy);color:var(--navy)}
-.fc-link svg{width:12px;height:12px;flex-shrink:0}
-.fc-tags{display:flex;flex-wrap:wrap;gap:.45rem;margin-top:1rem}
-.fc-tags span{
-  font-size:.54rem;letter-spacing:.12em;text-transform:uppercase;
-  color:var(--mutedlt);border:1px solid var(--border);
-  padding:.28rem .68rem;cursor:default;transition:border-color .3s,color .3s;
-}
-.fc-tags span:hover{border-color:var(--accent);color:var(--accent)}
-
-/* ── PRESENCE ── */
-#presence{background:var(--bg);border-top:1px solid var(--border)}
-.prestext{margin-bottom:3.5rem}
-.prestext p{
-  font-family:var(--serif);
-  font-size:clamp(1.2rem,2.3vw,1.8rem);
-  font-weight:300;color:var(--navy);line-height:1.65;
-}
-.mapwrap{background:var(--bg2);border:1px solid var(--border);padding:2rem}
-#wmap{width:100%;display:block}
-.mapleg{display:flex;gap:2rem;margin-top:1.4rem;justify-content:flex-end}
-.legitem{
-  display:flex;align-items:center;gap:.5rem;
-  font-size:.58rem;letter-spacing:.14em;text-transform:uppercase;color:var(--muted);
-}
-.legdot{width:6px;height:6px;border-radius:50%;background:var(--accent)}
-
-/* ── CONTACT ── */
-#contact{background:var(--navy);border-top:1px solid var(--border)}
-#contact .slabel{color:var(--gold,#9fb8e0)}
-#contact .clayout{}
-.clayout{display:grid;grid-template-columns:1fr 1fr;gap:8rem;align-items:center}
-.cleft .slabel{color:#9fb8e0}
-.cleft h2{
-  font-family:var(--serif);
-  font-size:clamp(1.5rem,2.7vw,2.3rem);
-  font-weight:300;color:#fff;line-height:1.48;margin-top:1.8rem;
-}
-.cemail{
-  display:block;font-family:var(--serif);
-  font-size:clamp(1rem,1.8vw,1.5rem);font-weight:300;
-  color:#fff;text-decoration:none;
-  position:relative;width:fit-content;transition:color .3s;
-}
-.cemail::after{
-  content:'';position:absolute;bottom:-3px;left:0;
-  width:0;height:1px;background:#9fb8e0;transition:width .4s var(--ease);
-}
-.cemail:hover{color:#9fb8e0}
-.cemail:hover::after{width:100%}
-.clocs{display:flex;flex-direction:column;gap:1.1rem;margin-top:2.6rem}
-.cloc{display:flex;align-items:center;gap:.9rem}
-.locdot{
-  width:6px;height:6px;border-radius:50%;background:#9fb8e0;
-  flex-shrink:0;animation:lp 2.6s ease-in-out infinite;
-}
-.cloc:nth-child(2) .locdot{animation-delay:.95s}
-@keyframes lp{
-  0%,100%{box-shadow:0 0 4px rgba(159,184,224,.3)}
-  50%{box-shadow:0 0 16px rgba(159,184,224,.85)}
-}
-.loccity{font-size:.67rem;letter-spacing:.18em;text-transform:uppercase;color:rgba(255,255,255,.65)}
-
-/* ── FOOTER ── */
-footer{background:var(--bg);border-top:1px solid var(--border);padding:2.2rem 0}
-.fi{
-  max-width:1100px;margin:0 auto;padding:0 5vw;
-  display:flex;align-items:center;justify-content:space-between;
-}
-.flogo{font-weight:600;font-size:.78rem;letter-spacing:.3em;color:var(--navy);opacity:.55}
-.fcopy{font-size:.56rem;letter-spacing:.1em;color:var(--mutedlt)}
-
-/* ── RESPONSIVE ── */
-@media(max-width:1024px){
-  .agrid,.pgrid,.clayout{grid-template-columns:1fr;gap:4rem}
-  .astats{flex-direction:row;flex-wrap:wrap;gap:2rem}
-  .vgrid,.wgrid{grid-template-columns:1fr}
-}
-@media(max-width:768px){
-  #nav{padding:0 1.4rem}
-  .nlinks,.lang-wrap{display:none}
-  .nbtn{display:flex}
-  #mmenu{display:flex}
-  section{padding:5.5rem 0}
-  .si{padding:0 1.4rem}
-  .slabel{margin-bottom:2.6rem}
-  .htitle{font-size:clamp(3.5rem,14vw,5.8rem)}
-  .fcard,.wblock{padding:2rem}
-  .fi{padding:0 1.4rem}
-}
-</style>
-</head>
-<body>
-
-<!-- NAV -->
-<nav id="nav">
-  <div class="nlogo">BECREX</div>
-  <ul class="nlinks">
-    <li><a href="#about"   data-i18n="nav.about">About</a></li>
-    <li><a href="#value"   data-i18n="nav.value">Advisory Areas</a></li>
-    <li><a href="#who"     data-i18n="nav.who">Who We Advise</a></li>
-    <li><a href="#people"  data-i18n="nav.people">Leadership</a></li>
-    <li><a href="#contact" data-i18n="nav.contact">Contact</a></li>
-  </ul>
-  <div class="lang-wrap">
-    <button class="lang-btn active" data-lang="en">EN</button>
-    <div class="lang-sep"></div>
-    <button class="lang-btn" data-lang="es">ES</button>
-  </div>
-  <button class="nbtn" aria-label="Menu"><span></span><span></span></button>
-</nav>
-
-<!-- MOBILE MENU -->
-<div id="mmenu">
-  <a href="#about"   class="mlink" data-i18n="nav.about">About</a>
-  <a href="#value"   class="mlink" data-i18n="nav.value">Advisory Areas</a>
-  <a href="#who"     class="mlink" data-i18n="nav.who">Who We Advise</a>
-  <a href="#people"  class="mlink" data-i18n="nav.people">Leadership</a>
-  <a href="#contact" class="mlink" data-i18n="nav.contact">Contact</a>
-  <div class="mlang">
-    <button class="mlang-btn active" data-lang="en">EN</button>
-    <button class="mlang-btn" data-lang="es">ES</button>
-  </div>
-</div>
-
 <!-- HERO -->
+
 <section id="hero">
   <div class="hbg"><div class="hgrid"></div></div>
+
   <div class="hcontent">
-    <div class="hey r" data-i18n="hero.eyebrow">Strategic Advisory · Core Markets: Mexico &amp; Spain</div>
+    <div class="hey r">Strategic Advisory</div>
+
     <h1 class="htitle r">BECREX</h1>
+
     <div class="hdiv r"></div>
-    <p class="hsub r" data-i18n="hero.sub">Independent strategic advisory in investment, credit and complex situations for investors, lenders and asset owners in Mexico and Spain.</p>
+
+    <p class="hsub r">
+      Independent advisory for investment, credit and asset-related decisions.
+    </p>
+
     <a href="#about" class="hcta r">
-      <span data-i18n="hero.cta">Learn more</span>
-      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5"><path d="M12 5v14M5 12l7 7 7-7"/></svg>
+      <span>Learn More</span>
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+        <path d="M12 5v14M5 12l7 7 7-7"/>
+      </svg>
     </a>
   </div>
-  <div class="hscroll"><div class="hscroll-line"></div></div>
+
+  <div class="hscroll">
+    <div class="hscroll-line"></div>
+  </div>
 </section>
+
 
 <!-- ABOUT -->
+
 <section id="about">
   <div class="si">
-    <div class="slabel r" data-i18n="about.label">01 — About</div>
+
+    <div class="slabel r">01 — About</div>
+
     <div class="agrid">
+
       <div class="atext r">
-        <h2 data-i18n="about.h2">We advise investors, lenders, asset owners and boards on strategic decisions involving capital, credit and complex assets.</h2>
-        <p data-i18n="about.p1">Mandates include investment, divestment, financing, restructuring and asset repositioning across hospitality, real estate, credit portfolios and special situations.</p>
-        <p data-i18n="about.p2">BECREX operates as an independent advisor. We do not provide lending, brokerage or asset management services, allowing our advice to remain aligned with client objectives.</p>
+
+        <h2>
+          Independent advisory focused on investment, credit and complex asset situations.
+        </h2>
+
+        <p>
+          We advise investors, lenders, asset owners and boards on strategic decisions involving capital, financing, restructuring and asset repositioning.
+        </p>
+
+        <p>
+          Mandates are approached with independent judgement, rigorous analysis and direct senior involvement.
+        </p>
+
       </div>
+
       <div class="astats r">
+
         <div class="astat">
-          <div class="anum" data-target="25">0</div>
-          <div class="alabel" data-i18n="about.stat1">Years of Senior Experience</div>
+          <div class="anum">25+</div>
+          <div class="alabel">Years of Experience</div>
         </div>
+
         <div class="astat">
-          <div class="anum" data-target="2" data-suffix="bn">0</div>
-          <div class="alabel" data-i18n="about.stat2">Credit Portfolio Overseen</div>
+          <div class="anum">US$2bn</div>
+          <div class="alabel">Credit Portfolio Overseen</div>
         </div>
+
         <div class="astat">
-          <div class="anum" data-target="2">0</div>
-          <div class="alabel" data-i18n="about.stat3">Core Markets: Mexico &amp; Spain</div>
+          <div class="anum">EU · LATAM</div>
+          <div class="alabel">Market Experience</div>
         </div>
+
       </div>
+
     </div>
+
   </div>
 </section>
 
-<!-- VALUE -->
+
+<!-- ADVISORY -->
+
 <section id="value">
+
   <div class="si">
-    <div class="slabel r" data-i18n="value.label">02 — Advisory Areas</div>
+
+    <div class="slabel r">02 — Advisory</div>
+
     <div class="vgrid">
+
       <div class="vcard r">
-        <div class="vtitle" data-i18n="value.t1">Investment &amp; Divestment</div>
-        <p data-i18n="value.p1">Advice on acquisitions, disposals and strategic repositioning of assets, combining transaction expertise with detailed asset-level analysis.</p>
+        <div class="vtitle">Investment & Divestment</div>
+        <p>
+          Advice on acquisitions, disposals and strategic repositioning of assets and portfolios.
+        </p>
         <div class="vline"></div>
       </div>
+
       <div class="vcard r">
-        <div class="vtitle" data-i18n="value.t2">Capital Structure</div>
-        <p data-i18n="value.p2">Assessment and design of capital structures intended to enhance financial flexibility, resilience and long-term value preservation.</p>
+        <div class="vtitle">Capital & Credit</div>
+        <p>
+          Advice on financing, capital structure, credit exposure and lender-related situations.
+        </p>
         <div class="vline"></div>
       </div>
+
       <div class="vcard r">
-        <div class="vtitle" data-i18n="value.t3">Stakeholder Alignment</div>
-        <p data-i18n="value.p3">Support in negotiations involving investors, lenders, sponsors and asset owners where interests, timing and outcomes require careful alignment.</p>
+        <div class="vtitle">Asset Repositioning</div>
+        <p>
+          Strategic assessment of operating, financial and asset-level opportunities.
+        </p>
         <div class="vline"></div>
       </div>
+
       <div class="vcard r">
-        <div class="vtitle" data-i18n="value.t4">Asset Performance</div>
-        <p data-i18n="value.p4">Identification and implementation of initiatives aimed at improving operational performance, capital efficiency and asset value.</p>
+        <div class="vtitle">Special Situations</div>
+        <p>
+          Advice in restructurings, complex stakeholder environments and non-standard situations.
+        </p>
         <div class="vline"></div>
       </div>
+
     </div>
+
   </div>
+
 </section>
 
-<!-- WHO WE WORK WITH -->
-<section id="who">
-  <div class="si">
-    <div class="slabel r" data-i18n="who.label">03 — Who We Advise</div>
-    <div class="wgrid">
-      <div class="wblock r">
-        <div class="wblock-tag" data-i18n="who.t1">Investors &amp; Capital Providers</div>
-        <p data-i18n="who.p1">We advise institutional investors, family offices, credit investors and other providers of capital on investment evaluation, portfolio oversight and capital deployment decisions.</p>
-      </div>
-      <div class="wblock r">
-        <div class="wblock-tag" data-i18n="who.t2">Asset Owners &amp; Boards</div>
-        <p data-i18n="who.p2">We support asset owners, boards and sponsors in strategic planning, capital allocation and the execution of investment, refinancing and restructuring initiatives.</p>
-      </div>
-    </div>
-  </div>
-</section>
 
-<!-- PEOPLE -->
+<!-- DOMINGO REX -->
+
 <section id="people">
+
   <div class="si">
-    <div class="slabel r" data-i18n="people.label">04 — Leadership</div>
+
+    <div class="slabel r">03 — Domingo Rex</div>
+
     <div class="pgrid">
+
       <div class="r">
-        <div class="pquote" data-i18n="people.quote">Experience informs judgement. Judgement guides execution.</div>
-        <p class="psub" data-i18n="people.sub">More than two decades of banking, credit and advisory experience shape our approach to risk, capital and strategic decision-making.</p>
+
+        <div class="pquote">
+          More than 25 years of experience across banking, credit and advisory in Europe and Latin America.
+        </div>
+
       </div>
+
       <div class="fcard r">
-        <div class="fc-head">
-          <div>
-            <div class="fc-role" data-i18n="people.role">Founder</div>
-            <div class="fc-name">Domingo Rex</div>
-          </div>
-        </div>
+
         <div class="fc-bio">
-          <p data-i18n="people.bio1">Banking and advisory executive with more than 25 years of experience across Europe and Latin America, focused on hospitality, real estate, credit and special situations.</p>
-          <p data-i18n="people.bio2">Former Managing Director and Country Head Mexico of Banco CAM, with responsibility for approximately US$2 billion of tourism and real estate credit exposure. Advises investors, lenders and asset owners on capital, credit and complex situations.</p>
+
+          <p>
+            Former Managing Director and Country Head Mexico of Banco CAM, with responsibility for approximately US$2 billion of tourism and real estate credit exposure.
+          </p>
+
+          <p>
+            Has advised financial institutions, investors and asset owners on strategic decisions involving capital, credit and complex assets.
+          </p>
+
+          <p>
+            Experience spans banking, hospitality, real estate, restructuring and special situations across multiple jurisdictions.
+          </p>
+
         </div>
-        <div class="fc-links">
-          <a href="https://www.linkedin.com/in/rexdomingo/" target="_blank" rel="noopener" class="fc-link">
-            <svg viewBox="0 0 24 24" fill="currentColor"><path d="M20.45 20.45h-3.56v-5.57c0-1.33-.03-3.04-1.85-3.04-1.85 0-2.14 1.45-2.14 2.94v5.67H9.35V9h3.41v1.56h.05c.48-.9 1.64-1.85 3.37-1.85 3.6 0 4.27 2.37 4.27 5.45v6.29zM5.34 7.43a2.07 2.07 0 1 1 0-4.14 2.07 2.07 0 0 1 0 4.14zM7.12 20.45H3.55V9h3.57v11.45zM22.22 0H1.77C.79 0 0 .77 0 1.73v20.54C0 23.23.79 24 1.77 24h20.45C23.2 24 24 23.23 24 22.27V1.73C24 .77 23.2 0 22.22 0z"/></svg>
-            LinkedIn
-          </a>
-        </div>
+
         <div class="fc-tags">
           <span>Banking</span>
-          <span>Credit Advisory</span>
+          <span>Credit</span>
           <span>Real Estate</span>
           <span>Hospitality</span>
           <span>Special Situations</span>
         </div>
+
       </div>
+
     </div>
+
   </div>
+
 </section>
 
-<!-- PRESENCE -->
-<section id="presence">
-  <div class="si">
-    <div class="slabel r" data-i18n="presence.label">05 — Presence</div>
-    <div class="prestext r">
-      <p data-i18n="presence.text">Based in Mexico City and Madrid, advising clients on opportunities, transactions and complex situations across both markets.</p>
-    </div>
-    <div class="mapleg r">
-      <div class="legitem"><span class="legdot"></span>Mexico City</div>
-      <div class="legitem"><span class="legdot"></span>Madrid</div>
-    </div>
-  </div>
-</section>
 
 <!-- CONTACT -->
+
 <section id="contact">
+
   <div class="si">
+
     <div class="clayout">
+
       <div class="cleft r">
-        <div class="slabel" data-i18n="nav.contact">Contact</div>
-        <h2 data-i18n="contact.h2">Domingo Rex</h2>
+        <div class="slabel">04 — Contact</div>
+
+        <h2>Domingo Rex</h2>
       </div>
+
       <div class="r">
-        <a href="mailto:domingo@becrex.com" class="cemail">domingo@becrex.com</a>
+
+        <a href="mailto:domingo@becrex.com" class="cemail">
+          domingo@becrex.com
+        </a>
+
         <div class="clocs">
-          <div class="cloc"><div class="locdot"></div><div class="loccity" data-i18n="contact.loc1">Mexico</div></div>
-          <div class="cloc"><div class="locdot"></div><div class="loccity" data-i18n="contact.loc2">Spain</div></div>
+
+          <div class="cloc">
+            <div class="locdot"></div>
+            <div class="loccity">Mexico</div>
+          </div>
+
+          <div class="cloc">
+            <div class="locdot"></div>
+            <div class="loccity">Spain</div>
+          </div>
+
         </div>
+
       </div>
+
     </div>
+
   </div>
+
 </section>
-
-<!-- FOOTER -->
-<footer>
-  <div class="fi">
-    <div class="flogo">BECREX</div>
-    <div class="fcopy">Core Markets: Mexico &amp; Spain · <span id="yr"></span></div>
-  </div>
-</footer>
-
-<script>
-/* ── i18n ── */
-const T={
-  en:{
-    "nav.about":"About","nav.value":"Advisory Areas","nav.who":"Who We Advise",
-    "nav.people":"Leadership","nav.contact":"Contact",
-    "hero.eyebrow":"Strategic Advisory · Mexico & Spain",
-    "hero.sub":"Independent strategic advisory in investment, credit and complex situations for investors, lenders and asset owners in Mexico and Spain.",
-    "hero.cta":"Learn more",
-    "about.label":"01 — About",
-    "about.h2":"We advise investors, lenders, asset owners and boards on strategic decisions involving capital, credit and complex assets.",
-    "about.p1":"Mandates include investment, divestment, financing, restructuring and asset repositioning across hospitality, real estate, credit portfolios and special situations.",
-    "about.p2":"BECREX operates as an independent advisor. We do not provide lending, brokerage or asset management services, allowing our advice to remain aligned with client objectives.",
-    "about.stat1":"Years of Senior Experience","about.stat2":"Credit Portfolio Overseen","about.stat3":"Core Markets: Mexico & Spain",
-    "value.label":"02 — Advisory Areas",
-    "value.t1":"Investment & Divestment","value.p1":"Advice on acquisitions, disposals and strategic repositioning of assets, combining transaction expertise with detailed asset-level analysis.",
-    "value.t2":"Capital Structure","value.p2":"Assessment and design of capital structures intended to enhance financial flexibility, resilience and long-term value preservation.",
-    "value.t3":"Stakeholder Alignment","value.p3":"Support in negotiations involving investors, lenders, sponsors and asset owners where interests, timing and outcomes require careful alignment.",
-    "value.t4":"Asset Performance","value.p4":"Identification and implementation of initiatives aimed at improving operational performance, capital efficiency and asset value.",
-    "who.label":"03 — Who We Advise",
-    "who.t1":"Investors & Capital Providers","who.p1":"We advise institutional investors, family offices, credit investors and other providers of capital on investment evaluation, portfolio oversight and capital deployment decisions.",
-    "who.t2":"Asset Owners & Boards","who.p2":"We support asset owners, boards and sponsors in strategic planning, capital allocation and the execution of investment, refinancing and restructuring initiatives.",
-    "people.label":"04 — Leadership",
-    "people.quote":"Experience informs judgement. Judgement guides execution.",
-    "people.sub":"More than two decades of banking, credit and advisory experience shape our approach to risk, capital and strategic decision-making.",
-    "people.role":"Founder",
-    "people.bio1":"Banking and advisory executive with more than 25 years of experience across Europe and Latin America, focused on hospitality, real estate, credit and special situations.",
-    "people.bio2":"Former Managing Director and Country Head Mexico of Banco CAM, with responsibility for approximately US$2 billion of tourism and real estate credit exposure. Advises investors, lenders and asset owners on capital, credit and complex situations.",
-    "presence.label":"05 — Presence",
-    "presence.text":"Based in Mexico City and Madrid, advising clients on opportunities, transactions and complex situations across both markets.",
-    "contact.h2":"Domingo Rex","contact.loc1":"Mexico","contact.loc2":"Spain"
-  },
-  es:{
-    "nav.about":"Nosotros","nav.value":"Áreas de Asesoría","nav.who":"A Quién Asesoramos",
-    "nav.people":"Liderazgo","nav.contact":"Contacto",
-    "hero.eyebrow":"Asesoría Estratégica · México y España",
-    "hero.sub":"Asesoría estratégica independiente en inversión, crédito y situaciones complejas para inversores, financiadores y propietarios de activos en México y España.",
-    "hero.cta":"Más información",
-    "about.label":"01 — Nosotros",
-    "about.h2":"Asesoramos a inversores, financiadores, propietarios de activos y consejos en decisiones estratégicas vinculadas a capital, crédito y activos complejos.",
-    "about.p1":"Los mandatos incluyen inversión, desinversión, financiación, reestructuración y reposicionamiento de activos en hotelería, inmobiliario, carteras de crédito y situaciones especiales.",
-    "about.p2":"BECREX opera como asesor independiente. No presta servicios de financiación, intermediación ni gestión de activos, lo que permite mantener el asesoramiento alineado con los objetivos del cliente.",
-    "about.stat1":"Años de Experiencia Senior","about.stat2":"Cartera de Crédito Supervisada","about.stat3":"Mercados Principales: México y España",
-    "value.label":"02 — Áreas de Asesoría",
-    "value.t1":"Inversión y Desinversión","value.p1":"Asesoramiento en adquisiciones, ventas y reposicionamiento estratégico de activos, combinando experiencia transaccional con análisis detallado a nivel activo.",
-    "value.t2":"Estructura de Capital","value.p2":"Evaluación y diseño de estructuras de capital orientadas a mejorar la flexibilidad financiera, la resiliencia y la preservación de valor a largo plazo.",
-    "value.t3":"Alineación de Stakeholders","value.p3":"Apoyo en negociaciones que involucran inversores, financiadores, sponsors y propietarios de activos cuando los intereses, tiempos y resultados requieren una alineación cuidadosa.",
-    "value.t4":"Rendimiento de Activos","value.p4":"Identificación e implementación de iniciativas dirigidas a mejorar el rendimiento operativo, la eficiencia de capital y el valor del activo.",
-    "who.label":"03 — A Quién Asesoramos",
-    "who.t1":"Inversores y Proveedores de Capital","who.p1":"Asesoramos a inversores institucionales, family offices, inversores de crédito y otros proveedores de capital en evaluación de inversiones, supervisión de cartera y decisiones de asignación de capital.",
-    "who.t2":"Propietarios de Activos y Consejos","who.p2":"Apoyamos a propietarios de activos, consejos y sponsors en planificación estratégica, asignación de capital y ejecución de procesos de inversión, refinanciación y reestructuración.",
-    "people.label":"04 — Liderazgo",
-    "people.quote":"La experiencia informa el criterio. El criterio guía la ejecución.",
-    "people.sub":"Más de dos décadas de experiencia en banca, crédito y asesoría definen nuestra aproximación al riesgo, al capital y a la toma de decisiones estratégicas.",
-    "people.role":"Fundador",
-    "people.bio1":"Ejecutivo de banca y asesoría con más de 25 años de experiencia en Europa y Latinoamérica, especializado en hotelería, inmobiliario, crédito y situaciones especiales.",
-    "people.bio2":"Ex Director General y Country Head México de Banco CAM, con responsabilidad sobre una exposición crediticia turística e inmobiliaria de aproximadamente US$2.000 millones. Asesora a inversores, financiadores y propietarios de activos en capital, crédito y situaciones complejas.",
-    "presence.label":"05 — Presencia",
-    "presence.text":"Con sede en Ciudad de México y Madrid, asesorando a clientes en oportunidades, transacciones y situaciones complejas en ambos mercados.",
-    "contact.h2":"Domingo Rex","contact.loc1":"México","contact.loc2":"España"
-  }
-};
-
-function applyLang(l){
-  document.querySelectorAll('[data-i18n]').forEach(el=>{
-    const k=el.getAttribute('data-i18n');
-    if(T[l][k]!==undefined) el.textContent=T[l][k];
-  });
-  document.querySelectorAll('.lang-btn,.mlang-btn').forEach(b=>{
-    b.classList.toggle('active',b.getAttribute('data-lang')===l);
-  });
-  document.documentElement.lang=l;
-}
-document.querySelectorAll('.lang-btn,.mlang-btn').forEach(b=>{
-  b.addEventListener('click',()=>applyLang(b.getAttribute('data-lang')));
-});
-applyLang('en');
-
-/* ── Nav ── */
-const nav=document.getElementById('nav');
-window.addEventListener('scroll',()=>nav.classList.toggle('s',scrollY>40),{passive:true});
-
-/* ── Mobile menu ── */
-const nbtn=document.querySelector('.nbtn'),mm=document.getElementById('mmenu');
-let open=false;
-function tog(s){
-  open=s;mm.classList.toggle('open',s);
-  const sp=nbtn.querySelectorAll('span');
-  sp[0].style.transform=s?'translateY(6px) rotate(45deg)':'';
-  sp[1].style.transform=s?'translateY(-6px) rotate(-45deg)':'';
-}
-nbtn.addEventListener('click',()=>tog(!open));
-document.querySelectorAll('.mlink').forEach(l=>l.addEventListener('click',()=>tog(false)));
-
-/* ── Reveal ── */
-const rio=new IntersectionObserver(entries=>{
-  entries.forEach(e=>{
-    if(e.isIntersecting){
-      const sibs=Array.from(e.target.parentElement.querySelectorAll('.r:not(.v)'));
-      setTimeout(()=>e.target.classList.add('v'),sibs.indexOf(e.target)*88);
-      rio.unobserve(e.target);
-    }
-  });
-},{threshold:.08});
-document.querySelectorAll('.r').forEach(el=>rio.observe(el));
-
-/* ── Counters ── */
-function count(el,target,sfx){
-  const s=performance.now(),d=1500,ease=t=>t<.5?2*t*t:-1+(4-2*t)*t;
-  (function tick(now){
-    const p=Math.min((now-s)/d,1);
-    el.textContent=Math.round(ease(p)*target)+(sfx||'');
-    if(p<1)requestAnimationFrame(tick);
-    else el.textContent=target+(sfx||'');
-  })(performance.now());
-}
-const cio=new IntersectionObserver(en=>{
-  en.forEach(e=>{
-    if(e.isIntersecting&&!e.target.dataset.done){
-      e.target.dataset.done=1;
-      const t=+e.target.dataset.target;
-      const sfx=(e.target.dataset.suffix||'')+(t===25?'+':'');
-      count(e.target,t,sfx);cio.unobserve(e.target);
-    }
-  });
-},{threshold:.5});
-document.querySelectorAll('.anum').forEach(el=>cio.observe(el));
-
-/* ── Year ── */
-document.getElementById('yr').textContent=new Date().getFullYear();
-
-/* ── Map ── */
-(function(){
-  const cv=document.getElementById('wmap');
-  if(!cv)return;
-  const dpr=Math.min(devicePixelRatio||1,2);
-  function init(){
-    const W=cv.parentElement.clientWidth-64,H=Math.round(W*.44);
-    cv.style.width=W+'px';cv.style.height=H+'px';
-    cv.width=W*dpr;cv.height=H*dpr;return{W,H};
-  }
-  let d=init();
-  const ctx=cv.getContext('2d');
-  ctx.scale(dpr,dpr);
-  const lx=(lon,W)=>(lon+180)/360*W;
-  const ly=(lat,W,H)=>{const r=lat*Math.PI/180,m=Math.log(Math.tan(Math.PI/4+r/2));return H/2-m*H/(2*Math.PI)*1.36+H*.05};
-  const shapes=[
-    [[-168,71],[-141,61],[-130,55],[-125,49],[-120,34],[-117,28],[-105,20],[-87,16],[-83,10],[-78,8],[-75,10],[-65,18],[-62,16],[-59,13],[-63,10],[-75,12],[-82,9],[-87,16],[-90,15],[-92,18],[-85,23],[-80,25],[-81,30],[-75,35],[-70,43],[-65,44],[-55,47],[-53,54],[-60,58],[-65,62],[-68,68],[-80,73],[-95,76],[-110,75],[-130,71],[-148,71],[-168,71]],
-    [[-45,61],[-42,65],[-20,76],[-18,83],[-40,84],[-58,83],[-73,77],[-73,70],[-55,60],[-45,61]],
-    [[-80,8],[-77,3],[-70,-2],[-50,-2],[-35,-5],[-35,-10],[-40,-20],[-45,-23],[-48,-28],[-52,-33],[-58,-38],[-62,-41],[-65,-46],[-66,-52],[-68,-56],[-63,-55],[-58,-52],[-55,-46],[-50,-29],[-48,-20],[-40,-10],[-36,-3],[-40,3],[-52,5],[-60,5],[-67,8],[-77,8],[-80,8]],
-    [[-10,36],[0,36],[5,36],[5,43],[0,43],[-5,44],[-2,48],[3,50],[8,53],[10,57],[16,58],[22,60],[25,65],[28,70],[20,70],[16,70],[14,58],[10,57],[5,53],[0,50],[5,47],[8,44],[3,44],[0,43],[-5,44],[-7,38],[-10,37],[-10,36]],
-    [[-9,37],[-7,37],[-5,36],[0,36],[3,42],[-2,44],[-7,44],[-9,39],[-9,37]],
-    [[4,57],[6,57],[8,58],[8,62],[14,64],[18,68],[26,70],[28,72],[20,74],[15,70],[14,65],[8,62],[5,57],[4,57]],
-    [[-6,34],[0,30],[10,30],[25,30],[32,30],[37,22],[44,12],[50,12],[44,5],[38,-2],[35,-5],[35,-12],[32,-18],[28,-22],[32,-26],[28,-30],[18,-34],[14,-34],[14,-28],[10,-22],[8,-10],[2,-2],[0,4],[2,6],[10,6],[14,12],[10,16],[2,24],[-6,30],[-8,28],[-12,20],[-12,14],[-8,12],[-15,12],[-18,15],[-18,24],[-14,28],[-6,34]],
-    [[26,70],[30,73],[50,75],[80,76],[100,73],[120,72],[140,72],[160,68],[163,60],[155,55],[145,44],[135,35],[125,25],[120,20],[110,18],[105,10],[100,4],[95,5],[90,20],[80,24],[70,22],[62,22],[58,24],[55,30],[45,30],[40,35],[35,36],[30,36],[26,42],[28,46],[30,50],[36,54],[40,60],[50,66],[60,70],[70,72],[80,74],[100,73]],
-    [[68,22],[72,20],[76,8],[80,8],[84,14],[80,20],[74,24],[68,24],[68,22]],
-    [[114,-22],[116,-20],[122,-18],[128,-14],[130,-12],[135,-12],[136,-14],[138,-18],[140,-18],[142,-12],[148,-20],[152,-24],[154,-28],[152,-32],[148,-38],[144,-38],[138,-36],[132,-34],[126,-34],[118,-30],[114,-26],[114,-22]],
-  ];
-  const pins=[{lon:-99.1,lat:19.4,label:'Mexico City'},{lon:-3.7,lat:40.4,label:'Madrid'}];
-
-  function draw(prog){
-    const{W,H}=d;
-    ctx.clearRect(0,0,W,H);ctx.fillStyle='#f2f4f7';ctx.fillRect(0,0,W,H);
-    ctx.strokeStyle='rgba(13,30,58,.045)';ctx.lineWidth=.5;
-    for(let la=-60;la<=60;la+=30){ctx.beginPath();ctx.moveTo(0,ly(la,W,H));ctx.lineTo(W,ly(la,W,H));ctx.stroke()}
-    for(let lo=-120;lo<=120;lo+=60){ctx.beginPath();ctx.moveTo(lx(lo,W),0);ctx.lineTo(lx(lo,W),H);ctx.stroke()}
-    shapes.forEach(sh=>{
-      ctx.beginPath();
-      sh.forEach(([lo,la],i)=>{const x=lx(lo,W),y=ly(la,W,H);i===0?ctx.moveTo(x,y):ctx.lineTo(x,y)});
-      ctx.closePath();
-      ctx.fillStyle='rgba(29,74,143,.06)';ctx.fill();
-      ctx.strokeStyle='rgba(13,30,58,.22)';ctx.lineWidth=.7;ctx.stroke();
-    });
-    pins.forEach(({lon,lat,label})=>{
-      const x=lx(lon,W),y=ly(lat,W,H);
-      const pulse=(Date.now()%2600)/2600,r=4+pulse*17,a=(1-pulse)*.32*prog;
-      ctx.beginPath();ctx.arc(x,y,r,0,Math.PI*2);
-      ctx.strokeStyle=`rgba(29,74,143,${a})`;ctx.lineWidth=1;ctx.stroke();
-      ctx.beginPath();ctx.arc(x,y,5,0,Math.PI*2);
-      ctx.strokeStyle=`rgba(29,74,143,${.5*prog})`;ctx.lineWidth=1;ctx.stroke();
-      ctx.beginPath();ctx.arc(x,y,2.8,0,Math.PI*2);
-      ctx.fillStyle=`rgba(13,30,58,${prog})`;ctx.fill();
-      ctx.font=`500 ${Math.max(7,W*.0065)}px Montserrat,sans-serif`;
-      ctx.fillStyle=`rgba(13,30,58,${.7*prog})`;
-      ctx.fillText(label.toUpperCase(),x+9,y+3.5);
-    });
-  }
-
-  let started=false,t0=null;
-  function loop(ts){if(!t0)t0=ts;draw(1-Math.pow(1-Math.min((ts-t0)/1400,1),3));requestAnimationFrame(loop)}
-  const mio=new IntersectionObserver(en=>{
-    if(en[0].isIntersecting&&!started){started=true;requestAnimationFrame(loop);mio.disconnect()}
-  },{threshold:.1});
-  mio.observe(cv);
-  window.addEventListener('resize',()=>{d=init();ctx.setTransform(1,0,0,1,0,0);ctx.scale(dpr,dpr)},{passive:true});
-})();
-</script>
-</body>
-</html>
