@@ -101,6 +101,7 @@ section{padding:11rem 0}
 .pgrid{display:grid;grid-template-columns:1fr;max-width:850px;margin:0 auto}
 .fcard{background:#fff;border:1px solid var(--border);padding:3.4rem;position:relative;box-shadow:0 2px 32px rgba(13,30,58,.025)}
 .fcard::before{content:'';position:absolute;top:0;left:0;width:2px;height:100%;background:linear-gradient(to bottom,var(--navy),transparent)}
+.profile-metrics{font-size:.68rem;font-weight:500;letter-spacing:.28em;text-transform:uppercase;color:var(--accent);margin-bottom:2rem;line-height:1.9}
 .fc-bio p{font-size:.95rem;color:var(--muted);line-height:1.9;margin-bottom:1rem}
 .fc-bio p:last-child{margin-bottom:0}
 .fc-links{display:flex;gap:1rem;margin-top:2rem;padding-top:2rem;border-top:1px solid var(--border)}
@@ -214,9 +215,11 @@ footer{background:var(--bg);border-top:1px solid var(--border);padding:2.2rem 0}
     <div class="pgrid">
       <div class="fcard r">
         <div class="fc-bio">
-          <p data-i18n="people.bio1">Senior advisor with experience across banking, credit and investment advisory in Europe and Latin America.</p>
-          <p data-i18n="people.bio2">Former Mexico Country Head at Banco CAM, where he managed a tourism-focused credit portfolio. Advised CaixaBank and Bankia on strategic divestments in Mexico.</p>
-          <p data-i18n="people.bio3">Advises investors, financial institutions and operators on investment, financing, restructuring and asset-related mandates, with a focus on hospitality, real estate and special situations.</p>
+          <div class="profile-metrics" data-i18n="people.metrics">25+ Years · US$2bn Credit Portfolio · Europe & Latin America</div>
+          <p data-i18n="people.bio1">Senior advisor with more than 25 years of experience across banking, credit and investment advisory in Europe and Latin America. Advises financial institutions, investors and corporate clients on transactions involving hospitality, real estate and special situations.</p>
+          <p data-i18n="people.bio2">Former Managing Director and Mexico Country Head at Banco CAM, where he managed a tourism-focused credit portfolio of nearly US$2 billion. Advised CaixaBank and Bankia on strategic divestments in Mexico, accelerating execution while preserving shareholder value.</p>
+          <p data-i18n="people.bio3">Has advised private investors, including Rodina, on hospitality investments, and supported banks and institutional clients in tourism and real estate transactions across Mexico and the Caribbean.</p>
+          <p data-i18n="people.bio4">Advises investors, financial institutions and operators on investment, financing, restructuring and asset-related mandates, combining transaction experience with regional market insight.</p>
 
         </div>
         <div class="fc-links">
@@ -277,9 +280,11 @@ const T={
     "who.t3":"Credit Providers","who.p3":"Lending exposure, refinancing, restructuring and recovery strategies.",
     "who.t4":"Asset Owners & Boards","who.p4":"Asset performance, capital planning, repositioning and governance matters.",
     "people.label":"Domingo Rex",
-    "people.bio1":"Senior advisor with experience across banking, credit and investment advisory in Europe and Latin America.",
-    "people.bio2":"Former Mexico Country Head at Banco CAM, where he managed a tourism-focused credit portfolio. Advised CaixaBank and Bankia on strategic divestments in Mexico.",
-    "people.bio3":"Advises investors, financial institutions and operators on investment, financing, restructuring and asset-related mandates, with a focus on hospitality, real estate and special situations.",
+    "people.metrics":"25+ Years · US$2bn Credit Portfolio · Europe & Latin America",
+    "people.bio1":"Senior advisor with more than 25 years of experience across banking, credit and investment advisory in Europe and Latin America. Advises financial institutions, investors and corporate clients on transactions involving hospitality, real estate and special situations.",
+    "people.bio2":"Former Managing Director and Mexico Country Head at Banco CAM, where he managed a tourism-focused credit portfolio of nearly US$2 billion. Advised CaixaBank and Bankia on strategic divestments in Mexico, accelerating execution while preserving shareholder value.",
+    "people.bio3":"Has advised private investors, including Rodina, on hospitality investments, and supported banks and institutional clients in tourism and real estate transactions across Mexico and the Caribbean.",
+    "people.bio4":"Advises investors, financial institutions and operators on investment, financing, restructuring and asset-related mandates, combining transaction experience with regional market insight.",
 
     "contact.label":"Contact","contact.loc1":"Mexico","contact.loc2":"Spain"
   },
@@ -303,9 +308,11 @@ const T={
     "who.t3":"Proveedores de Crédito","who.p3":"Exposición crediticia, refinanciación, reestructuración y estrategias de recuperación.",
     "who.t4":"Propietarios de Activos y Consejos","who.p4":"Rendimiento de activos, planificación de capital, reposicionamiento y gobierno corporativo.",
     "people.label":"Domingo Rex",
-    "people.bio1":"Asesor senior con experiencia en banca, crédito y asesoría de inversión en Europa y Latinoamérica.",
-    "people.bio2":"Ex Country Head México de Banco CAM, donde gestionó una cartera de crédito enfocada en turismo. Asesoró a CaixaBank y Bankia en desinversiones estratégicas en México.",
-    "people.bio3":"Asesora a inversores, instituciones financieras y operadores en mandatos de inversión, financiación, reestructuración y activos, con foco en hotelería, real estate y situaciones especiales.",
+    "people.metrics":"25+ años · Cartera de crédito de US$2.000m · Europa y Latinoamérica",
+    "people.bio1":"Asesor senior con más de 25 años de experiencia en banca, crédito y asesoría de inversión en Europa y Latinoamérica. Asesora a entidades financieras, inversores y clientes corporativos en transacciones relacionadas con hotelería, real estate y situaciones especiales.",
+    "people.bio2":"Ex Managing Director y Country Head México de Banco CAM, donde gestionó una cartera de crédito enfocada en turismo cercana a los US$2.000 millones. Asesoró a CaixaBank y Bankia en desinversiones estratégicas en México, acelerando la ejecución y preservando valor para los accionistas.",
+    "people.bio3":"Ha asesorado a inversores privados, incluyendo Rodina, en inversiones hoteleras, así como a bancos y clientes institucionales en transacciones de turismo y real estate en México y el Caribe.",
+    "people.bio4":"Asesora a inversores, instituciones financieras y operadores en mandatos de inversión, financiación, reestructuración y activos, combinando experiencia transaccional con conocimiento regional.",
 
     "contact.label":"Contacto","contact.loc1":"México","contact.loc2":"España"
   }
